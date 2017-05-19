@@ -48,6 +48,14 @@ public abstract class BaseActivity extends Activity {
             view.setTypeface(NanumNormal);
     }
 
+
+    public void goBTSetting() {
+        Intent intent = new Intent();
+        intent.setAction("android.intent.action.MAIN");
+        intent.setClassName("com.android.settings", "com.android.settings.bluetooth.BluetoothSettings");
+        startActivity(intent);
+    }
+
     /**
      * 현재 context를 불러오기
      * @return activity
