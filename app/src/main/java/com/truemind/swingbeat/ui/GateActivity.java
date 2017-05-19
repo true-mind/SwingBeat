@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.truemind.swingbeat.BaseActivity;
 import com.truemind.swingbeat.Constants;
@@ -18,6 +19,10 @@ public class GateActivity extends BaseActivity {
     private ImageButton btnGame;
     private ImageButton btnTest;
     private ImageButton btnBT;
+
+    /**for onBackPress*/
+    public final long FINISH_INTERVAL_TIME = 2000;
+    public long backPressedTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +75,9 @@ public class GateActivity extends BaseActivity {
         btnDrum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getContext(), DrumActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -90,5 +97,54 @@ public class GateActivity extends BaseActivity {
 
     }
 
-    onkey
+    @Override
+    public void onBackPressed() {
+        goBack();
+    }
+
+    public void goBack(){
+        long tempTime = System.currentTimeMillis();
+        long intervalTime = tempTime - backPressedTime;
+
+        if(0<=intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
+            super.onBackPressed();
+        }
+        else
+        {
+            backPressedTime = tempTime;
+            Toast.makeText(getContext(), R.string.exitMessage,Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onkey1() {
+        Intent intent = new Intent(getContext(), DrumActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onkey2() {
+        //TODO Move to GameActivity
+    }
+
+    @Override
+    public void onkey3() {
+        //TODO Move to TestActivity
+    }
+
+    @Override
+    public void onkey4() {
+        goBTSetting();
+    }
+
+    @Override
+    public void onkey5() {
+        //Intentionally do nothing
+    }
+
+    @Override
+    public void onKeyBack() {
+        goBack();
+    }
 }

@@ -5,14 +5,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
 import android.os.Build;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -65,5 +68,48 @@ public abstract class BaseActivity extends Activity {
         return this;
     }
 
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if(event.getAction() == KeyEvent.ACTION_DOWN) {
+            int keyCode = event.getKeyCode();
+            if(keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
+                onkey1();
+            }
+            else if(keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
+                onkey2();
+            }
+            else if(keyCode == KeyEvent.KEYCODE_DPAD_UP) {
+                onkey3();
+            }
+            else if(keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
+                onkey4();
+            }
+            else if(keyCode == KeyEvent.KEYCODE_ENTER) {
+                onkey5();
+            }
+            else if(keyCode == KeyEvent.KEYCODE_BACK){
+                onKeyBack();
+            }else if(keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
+                AudioManager mAudioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+                mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC,
+                        AudioManager.ADJUST_LOWER,
+                        AudioManager.FLAG_SHOW_UI);
+            }else if(keyCode == KeyEvent.KEYCODE_VOLUME_UP){
+                AudioManager mAudioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+                mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC,
+                        AudioManager.ADJUST_RAISE,
+                        AudioManager.FLAG_SHOW_UI);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public abstract void onkey1();
+    public abstract void onkey2();
+    public abstract void onkey3();
+    public abstract void onkey4();
+    public abstract void onkey5();
+    public abstract void onKeyBack();
 
 }
