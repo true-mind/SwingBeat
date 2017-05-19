@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#fff"
     android:orientation="horizontal"
-    tools:context="com.truemind.swingbeat.RhythmActivity"
+    tools:context="com.truemind.swingbeat.ui.RhythmActivity"
     android:id="@+id/parentLayout">
 
     <ImageView

@@ -1,6 +1,5 @@
-package com.truemind.swingbeat;
+package com.truemind.swingbeat.ui;
 
-import android.animation.Animator;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.CountDownTimer;
@@ -8,23 +7,23 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.truemind.swingbeat.BaseActivity;
+import com.truemind.swingbeat.R;
+
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class RhythmActivity extends AppCompatActivity {
+public class RhythmActivity extends BaseActivity {
 
     FrameLayout parentLayout;
 
@@ -63,7 +62,7 @@ public class RhythmActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_rhythm);
 
         initView();
         initHandler();
@@ -360,9 +359,16 @@ public class RhythmActivity extends AppCompatActivity {
         isOnView[var] = false;
         isPerfect[var] = false;
         isGood[var] = false;
-        image.animate().translationY(-900).setDuration(0);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            image.animate().translationY(-900).setDuration(0).withEndAction(new Runnable() {
+                @Override
+                public void run() {
+                    image.setVisibility(View.INVISIBLE);
+                }
+            });
+        }
 
-        image.setVisibility(View.INVISIBLE);
+
     }
 
     private void initCombo(){
@@ -408,29 +414,32 @@ public class RhythmActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        if(event.getAction() == KeyEvent.ACTION_DOWN) {
-            int keyCode = event.getKeyCode();
-            if(keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
-                Toast.makeText(RhythmActivity.this, "left clicked", Toast.LENGTH_SHORT).show();
-            }
-            else if(keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
-                Toast.makeText(RhythmActivity.this, "right clicked", Toast.LENGTH_SHORT).show();
-            }
-            else if(keyCode == KeyEvent.KEYCODE_DPAD_UP) {
-                Toast.makeText(RhythmActivity.this, "up clicked", Toast.LENGTH_SHORT).show();
-            }
-            else if(keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
-                Toast.makeText(RhythmActivity.this, "down clicked", Toast.LENGTH_SHORT).show();
-            }
-            else if(keyCode == KeyEvent.KEYCODE_ENTER) {
-                Toast.makeText(RhythmActivity.this, "enter clicked", Toast.LENGTH_SHORT).show();
-            }
-            else{
-            Toast.makeText(RhythmActivity.this, "dispatch", Toast.LENGTH_SHORT).show();
-            }
-            return true;
-        }
-        return false;
+    public void onkey1() {
+        button1.performClick();
+    }
+
+    @Override
+    public void onkey2() {
+        button2.performClick();
+    }
+
+    @Override
+    public void onkey3() {
+        button3.performClick();
+    }
+
+    @Override
+    public void onkey4() {
+
+    }
+
+    @Override
+    public void onkey5() {
+
+    }
+
+    @Override
+    public void onKeyBack() {
+        onBackPressed();
     }
 }
