@@ -4,7 +4,7 @@
     <string name="virtual_drum">[Virtual Drum]</string>
     <string name="virtual_drumText1">Swing Air와 함께 신나는 가상드럼을</string>
     <string name="virtual_drumText2">체험해 보세요!</string>
-    <string name="rythm_game">[Swing Rythm]</string>
+    <string name="rythm_game">[Swing Rhythm]</string>
     <string name="rythm_gameText1">Swing Air와 함께 떨어지는 비트에</string>
     <string name="rythm_gameText2">따라 리듬을 맞춰보세요!</string>
     <string name="speed_test">[Speed Test]</string>
@@ -13,4 +13,11 @@
     <string name="exitMessage">\"Back\"버튼 을 한번 더 눌러 SwingBeat를 종료</string>
     <string name="confirm">확인</string>
     <string name="cancel">취소</string>
+    <string name="setting">Setting</string>
+    <string name="click1">1번 버튼 클릭 시 :</string>
+    <string name="click2">2번 버튼 클릭 시 :</string>
+    <string name="click3">3번 버튼 클릭 시 :</string>
+    <string name="click4">4번 버튼 클릭 시 :</string>
+    <string name="click5">5번 버튼 클릭 시 :</string>
+    <string name="saveNQuit">저장하고 나가기</string>
 </resources>

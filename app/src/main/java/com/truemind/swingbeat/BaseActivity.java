@@ -51,7 +51,6 @@ public abstract class BaseActivity extends Activity {
             view.setTypeface(NanumNormal);
     }
 
-
     public void goBTSetting() {
         Intent intent = new Intent();
         intent.setAction("android.intent.action.MAIN");

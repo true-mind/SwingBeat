@@ -30,6 +30,7 @@ public class DrumActivity extends BaseActivity {
     private ImageButton crash16;
     private ImageButton crash18;
     private ImageButton ride;
+    private ImageButton setting;
 
     SoundPool kickPool;
     SoundPool snarePool;
@@ -50,8 +51,6 @@ public class DrumActivity extends BaseActivity {
     int crash16Track;
     int crash18Track;
     int rideTrack;
-
-    //ImageButton.OnClickListener mClickListener;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,17 +73,7 @@ public class DrumActivity extends BaseActivity {
         crash16 = (ImageButton) findViewById(R.id.crash16);
         crash18 = (ImageButton) findViewById(R.id.crash18);
         ride = (ImageButton) findViewById(R.id.ride);
-/*
-        kick.setOnClickListener(mClickListener);
-        snare.setOnClickListener(mClickListener);
-        hihat.setOnClickListener(mClickListener);
-        tomS.setOnClickListener(mClickListener);
-        tomM.setOnClickListener(mClickListener);
-        tomF.setOnClickListener(mClickListener);
-        crash16.setOnClickListener(mClickListener);
-        crash18.setOnClickListener(mClickListener);
-        ride.setOnClickListener(mClickListener);*/
-
+        setting = (ImageButton)findViewById(R.id.setting);
         initSound();
     }
 
@@ -180,6 +169,14 @@ public class DrumActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 ridePool.play(rideTrack, 1, 1, 0, 0, 1);
+            }
+        });
+        setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), DrumSetting.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

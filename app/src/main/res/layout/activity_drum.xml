@@ -78,6 +78,7 @@
         android:background="@drawable/s_drum_ride"/>
 
     <ImageButton
+        android:id="@+id/setting"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_marginLeft="20dp"

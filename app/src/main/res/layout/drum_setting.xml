@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/setting_black"/>
+
+        <TextView
+            android:id="@+id/settingTitle"
+            android:layout_marginLeft="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="38dp"
+            android:textColor="#000"
+            android:text="@string/setting"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/settingSpinnerBase">
+
+        <TextView
+            android:id="@+id/settingItem1"
+            style="@style/settingSpinnerDescription"
+            android:text="@string/click1"/>
+
+        <Spinner
+            android:id="@+id/spinner1"
+            style="@style/settingSpinnerStyle"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/settingSpinnerBase">
+
+        <TextView
+            android:id="@+id/settingItem2"
+            style="@style/settingSpinnerDescription"
+            android:text="@string/click2"/>
+
+        <Spinner
+            android:id="@+id/spinner2"
+            style="@style/settingSpinnerStyle"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/settingSpinnerBase">
+
+        <TextView
+            android:id="@+id/settingItem3"
+            style="@style/settingSpinnerDescription"
+            android:text="@string/click3"/>
+
+        <Spinner
+            android:id="@+id/spinner3"
+            style="@style/settingSpinnerStyle"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/settingSpinnerBase">
+
+        <TextView
+            android:id="@+id/settingItem4"
+            style="@style/settingSpinnerDescription"
+            android:text="@string/click4"/>
+
+        <Spinner
+            android:id="@+id/spinner4"
+            style="@style/settingSpinnerStyle"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/settingSpinnerBase">
+
+        <TextView
+            android:id="@+id/settingItem5"
+            style="@style/settingSpinnerDescription"
+            android:text="@string/click5"/>
+
+        <Spinner
+            android:id="@+id/spinner5"
+            style="@style/settingSpinnerStyle"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/btnSave"
+            android:gravity="center"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="end"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:background="#e3e3e3">
+
+            <TextView
+                android:id="@+id/saveNQuit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:text="@string/saveNQuit"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

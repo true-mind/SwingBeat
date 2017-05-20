@@ -12,17 +12,20 @@
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
-        <activity android:name=".ui.IntroActivity">
+        <activity android:name=".ui.IntroActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER" />    `
             </intent-filter>
         </activity>
 
         <activity android:name=".ui.GateActivity"
             android:theme="@style/AppThemeGreenBar"/>
         <activity android:name=".ui.DrumActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".ui.DrumSetting"
             android:screenOrientation="landscape"/>
 
 
