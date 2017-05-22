@@ -126,7 +126,9 @@ public class GateActivity extends BaseActivity {
 
     @Override
     public void onkey2() {
-        //TODO Move to GameActivity
+        Intent intent = new Intent(getContext(), RhythmActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
