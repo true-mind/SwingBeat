@@ -1,5 +1,6 @@
 package com.truemind.swingbeat.ui;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.CountDownTimer;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 
 import com.truemind.swingbeat.BaseActivity;
 import com.truemind.swingbeat.R;
+import com.truemind.swingbeat.service.MpPlayer;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -58,6 +61,11 @@ public class RhythmActivity extends BaseActivity {
     private int combo;
     private int countdown = 3;
     private long sec;
+    private int beat = 1000;
+
+    private int mIndex1;
+    private int mIndex2;
+    private int mIndex3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,53 +94,420 @@ public class RhythmActivity extends BaseActivity {
         }.start();
     }
 
+    private void controlMoves(int i, long time){
+        switch(i){
+            case 1:
+                if(mIndex1==0){
+                    startAfter(0, mIndex1, time, move1_1);
+                    mIndex1++;
+                }else if(mIndex1==1){
+                    startAfter(0, mIndex1, time, move1_2);
+                    mIndex1++;
+                }else{
+                    startAfter(0, mIndex1, time, move1_3);
+                    mIndex1=0;
+                }
+                break;
+            case 2:
+                if(mIndex2==0){
+                    startAfter(1, mIndex2, time, move2_1);
+                    mIndex2++;
+                }else if(mIndex2==1){
+                    startAfter(1, mIndex2, time, move2_2);
+                    mIndex2++;
+                }else{
+                    startAfter(1, mIndex2, time, move2_3);
+                    mIndex2=0;
+                }
+                break;
+            case 3:
+                if(mIndex3==0){
+                    startAfter(2, mIndex3, time, move3_1);
+                    mIndex3++;
+                }else if(mIndex3==1){
+                    startAfter(2, mIndex3, time, move3_2);
+                    mIndex3++;
+                }else{
+                    startAfter(2, mIndex3, time, move3_3);
+                    mIndex3=0;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
     private void initMoves(){
         isOnView = new boolean[9];
         isGood = new boolean[9];
         isPerfect = new boolean[9];
         media_handler.sendEmptyMessageDelayed(0, 1900);
-        sec = 500;
-        startAfter(0, 0, sec, move1_1);
-        sec += 900;
-        startAfter(0, 1, sec, move1_2);
-        sec += 900;
+        sec = 1300;
 
-        startAfter(1, 0, sec, move2_1);
-        sec += 900;
-        startAfter(1, 1, sec, move2_2);
-        sec += 900;
+        controlMoves(1, sec);
+        sec+=500;
+        controlMoves(1, sec);
+        sec+=500;
 
-        startAfter(2, 0, sec, move3_1);
-        sec += 900;
-        startAfter(2, 1, sec, move3_2);
-        sec += 900;
-        startAfter(1, 2, sec, move2_3);
-        sec += 1700;
+        controlMoves(2, sec);
+        sec+=beat;
+        controlMoves(3, sec);
+        sec+=beat;
+        controlMoves(1, sec);
+        sec+=beat;
+        controlMoves(2, sec);
+        sec+=beat;
 
-        startAfter(2, 0, sec, move3_3);
-        sec += 900;
-        startAfter(2, 1, sec, move3_2);
-        sec += 900;
+        controlMoves(1, sec);
+        sec+=beat;
+        controlMoves(3, sec);
+        sec+=beat;
+        controlMoves(2, sec);
+        sec+=beat;
+        controlMoves(3, sec);
+        sec+=beat;
 
-        startAfter(1, 2, sec, move2_3);
-        sec += 900;
-        startAfter(1, 1, sec, move2_2);
-        sec += 900;
+        controlMoves(2, sec);
+        sec+=beat;
+        controlMoves(3, sec);
+        sec+=beat;
+        controlMoves(1, sec);
+        sec+=beat;
+        controlMoves(2, sec);
+        sec+=beat;
 
-        startAfter(0, 2, sec, move1_3);
-        sec += 900;
-        startAfter(0, 1, sec, move1_2);
-        sec += 900;
-        startAfter(2, 0, sec, move3_1);
-        sec += 1800;
+        controlMoves(1, sec);
+        sec+=beat;
+        controlMoves(3, sec);
+        sec+=beat;
+        controlMoves(2, sec);
+        sec+=beat*2;
 
+        //반주
+
+        controlMoves(1, sec);
+        sec+=beat/2;
+        controlMoves(1, sec);
+        sec+=beat;
+        controlMoves(3, sec);
+        sec+=beat/2;
+
+        controlMoves(2, sec);
+        sec+=beat/2;
+        controlMoves(2, sec);
+        sec+=beat;
+        controlMoves(3, sec);
+        sec+=beat/2;
+
+        controlMoves(1, sec);
+        sec+=beat/2;
+        controlMoves(1, sec);
+        sec+=beat;
+        controlMoves(3, sec);
+        sec+=beat/2;
+
+        controlMoves(2, sec);
+        sec+=beat/2;
+        controlMoves(2, sec);
+        sec+=beat;
+        controlMoves(3, sec);
+        sec+=beat/2;
+
+        controlMoves(3, sec);
+        sec+=beat/2;
+        controlMoves(1, sec);
+        sec+=beat;
+        controlMoves(2, sec);
+        sec+=beat/2;
+
+        controlMoves(1, sec);
+        sec+=beat/2;
+        controlMoves(3, sec);
+        sec+=beat;
+        controlMoves(2, sec);
+        sec+=beat/2;
+
+        controlMoves(3, sec);
+        sec+=beat/2;
+        controlMoves(1, sec);
+        sec+=beat;
+        controlMoves(2, sec);
+        sec+=beat/2;
+
+        controlMoves(1, sec);
+        sec+=beat/2;
+        controlMoves(3, sec);
+        sec+=beat/2;
+        controlMoves(2, sec);
+        sec+=beat/2;
+        controlMoves(1, sec);
+        sec+=beat/2;
+
+        //후렴
+
+        controlMoves(3, sec);
+        sec+=beat/2;
+        controlMoves(2, sec);
+        sec+=beat/2;
+        controlMoves(2, sec);
+        sec+=beat/2;
+        controlMoves(3, sec);
+        sec+=beat/4;
+        controlMoves(1, sec);
+        sec+=beat/4;
+
+        sec+=beat;
+        controlMoves(1, sec);
+        sec+=beat/4;
+        controlMoves(2, sec);
+        sec+=beat/4;
+        controlMoves(1, sec);
+        sec+=beat/2;
+
+        controlMoves(2, sec);
+        sec+=beat/2;
+        controlMoves(3, sec);
+        sec+=beat/4;
+        controlMoves(2, sec);
+        sec+=beat/4;
+        controlMoves(3, sec);
+        sec+=beat/2;
+        controlMoves(1, sec);
+        sec+=beat/2;
+
+        sec+=beat;
+        controlMoves(2, sec);
+        sec+=beat/2;
+        controlMoves(1, sec);
+        sec+=beat/2;
+
+        controlMoves(2, sec);
+        sec+=beat/2;
+        controlMoves(1, sec);
+        sec+=beat/2;
+        controlMoves(2, sec);
+        sec+=beat/2;
+        controlMoves(3, sec);
+        sec+=beat/2;
+
+        sec+=beat;
+        controlMoves(2, sec);
+        sec+=beat/2;
+        controlMoves(1, sec);
+        sec+=beat/2;
+
+        controlMoves(3, sec);
+        sec+=beat/2;
+        controlMoves(2, sec);
+        sec+=beat/4;
+        controlMoves(2, sec);
+        sec+=beat/4;
+        controlMoves(3, sec);
+        sec+=beat/2;
+        controlMoves(1, sec);
+        sec+=beat/2;
+
+        // 2절
+
+        sec+=beat/2;
+        controlMoves(1, sec);
+        sec+=beat/2;
+        controlMoves(1, sec);
+        sec+=beat/2;
+        controlMoves(2, sec);
+        sec+=beat/2;
+
+        controlMoves(3, sec);
+        sec+=beat/4;
+        controlMoves(2, sec);
+        sec+=beat/4;
+        controlMoves(3, sec);
+        sec+=beat/4*3;
+        controlMoves(1, sec);
+        sec+=beat/4*3;
+
+        sec+=beat;
+        controlMoves(2, sec);
+        sec+=beat/2;
+        controlMoves(1, sec);
+        sec+=beat/2;
+
+        controlMoves(2, sec);
+        sec+=beat/2;
+        controlMoves(3, sec);
+        sec+=beat/2;
+        sec+=beat;
+
+        sec+=beat/4;
+        controlMoves(1, sec);
+        sec+=beat/4;
+        controlMoves(1, sec);
+        sec+=beat/2;
+        controlMoves(3, sec);
+        sec+=beat/2;
+        controlMoves(2, sec);
+        sec+=beat/2;
+
+        controlMoves(3, sec);
+        sec+=beat/2;
+        controlMoves(2, sec);
+        sec+=beat/2;
+        sec+=beat;
+
+        sec+=beat/2;
+        controlMoves(1, sec);
+        sec+=beat/2;
+        controlMoves(2, sec);
+        sec+=beat/2;
+        controlMoves(1, sec);
+        sec+=beat/2;
+
+        sec+=beat/2;
+        controlMoves(1, sec);
+        sec+=beat/2*3;
+
+        controlMoves(1, sec);
+        controlMoves(3, sec);
+        sec+=beat;
+        controlMoves(2, sec);
+        sec+=beat/2;
+        controlMoves(2, sec);
+        sec+=beat/2;
+
+        // 2절 후렴
+
+        controlMoves(3, sec);
+        sec+=beat/2;
+        controlMoves(2, sec);
+        sec+=beat/2;
+        controlMoves(2, sec);
+        sec+=beat/2;
+        controlMoves(3, sec);
+        sec+=beat/4;
+        controlMoves(1, sec);
+        sec+=beat/4;
+
+        sec+=beat;
+        controlMoves(1, sec);
+        sec+=beat/4;
+        controlMoves(2, sec);
+        sec+=beat/4;
+        controlMoves(1, sec);
+        sec+=beat/2;
+
+        controlMoves(1, sec);
+        sec+=beat/2;
+        controlMoves(2, sec);
+        sec+=beat/2;
+        controlMoves(2, sec);
+        sec+=beat/2;
+        controlMoves(3, sec);
+        sec+=beat/2;
+
+        sec+=beat;
+        controlMoves(2, sec);
+        sec+=beat/2;
+        controlMoves(1, sec);
+        sec+=beat/2;
+
+        controlMoves(2, sec);
+        sec+=beat/2;
+        controlMoves(1, sec);
+        sec+=beat/2;
+        controlMoves(2, sec);
+        sec+=beat/2;
+        controlMoves(3, sec);
+        sec+=beat/2;
+
+        sec+=beat;
+        controlMoves(2, sec);
+        sec+=beat/2;
+        controlMoves(1, sec);
+        sec+=beat/2;
+
+        controlMoves(3, sec);
+        sec+=beat/2;
+        controlMoves(2, sec);
+        sec+=beat/4;
+        controlMoves(2, sec);
+        sec+=beat/4;
+        controlMoves(3, sec);
+        sec+=beat/2;
+        controlMoves(1, sec);
+        sec+=beat/2;
+
+        controlMoves(3, sec);
+        sec+=beat;
+        controlMoves(2, sec);
+        sec+=beat/2;
+
+        controlMoves(3, sec);
+        sec+=beat;
+        controlMoves(3, sec);
+        sec+=beat/2;
+        controlMoves(2, sec);
+        sec+=beat/2;
+
+        controlMoves(3, sec);
+        sec+=beat;
+        controlMoves(1, sec);
+        sec+=beat/2;
+        controlMoves(2, sec);
+        sec+=beat/2;
+
+        controlMoves(3, sec);
+        sec+=beat;
+        controlMoves(3, sec);
+        sec+=beat/2;
+        controlMoves(2, sec);
+        sec+=beat/2;
+
+        controlMoves(1, sec);
+        controlMoves(3, sec);
+        sec+=beat;
+
+        controlMoves(2, sec);
+        controlMoves(3, sec);
+        sec+=beat;
+
+
+        controlMoves(3, sec);
+        sec+=beat;
+        controlMoves(3, sec);
+        sec+=beat/2;
+        controlMoves(2, sec);
+        sec+=beat/2;
+
+        controlMoves(3, sec);
+        sec+=beat;
+        controlMoves(1, sec);
+        sec+=beat/2;
+        controlMoves(2, sec);
+        sec+=beat/2;
+
+        controlMoves(3, sec);
+        sec+=beat;
+        controlMoves(3, sec);
+        sec+=beat/2;
+        controlMoves(2, sec);
+        sec+=beat/2;
+
+        controlMoves(1, sec);
+        controlMoves(3, sec);
+        sec+=beat;
+
+        controlMoves(2, sec);
+        controlMoves(3, sec);
+        sec+=beat;
+
+        controlMoves(1, sec);
+        controlMoves(3, sec);
     }
 
 
     private void initMediaPlayer() {
-        int resId = R.raw.little_star;
-        MediaPlayer mediaPlayer = MediaPlayer.create(this, resId);
-        mediaPlayer.start();
+        Intent intent = new Intent(RhythmActivity.this, MpPlayer.class);
+        startService(intent);
     }
 
     private void initListener() {
@@ -349,9 +724,11 @@ public class RhythmActivity extends BaseActivity {
         image.setVisibility(View.VISIBLE);
         int var = index * 3 + sub_index;
         isOnView[var] = true;
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             image.clearAnimation();
-            image.animate().translationY(900).setDuration(2000).setInterpolator(AnimationUtils.loadInterpolator(RhythmActivity.this, android.R.anim.linear_interpolator)).start();
+            image.setY(0);
+            image.animate().translationY(1300).setDuration(2000).setInterpolator(AnimationUtils.loadInterpolator(RhythmActivity.this, android.R.anim.linear_interpolator)).start();
         }
     }
 
@@ -359,16 +736,8 @@ public class RhythmActivity extends BaseActivity {
         isOnView[var] = false;
         isPerfect[var] = false;
         isGood[var] = false;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            image.animate().translationY(-900).setDuration(0).withEndAction(new Runnable() {
-                @Override
-                public void run() {
-                    image.setVisibility(View.INVISIBLE);
-                }
-            });
-        }
 
-
+        image.setVisibility(View.INVISIBLE);
     }
 
     private void initCombo(){
@@ -441,5 +810,12 @@ public class RhythmActivity extends BaseActivity {
     @Override
     public void onKeyBack() {
         onBackPressed();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Intent intent = new Intent(RhythmActivity.this, MpPlayer.class);
+        stopService(intent);
     }
 }
