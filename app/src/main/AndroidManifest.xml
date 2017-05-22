@@ -14,14 +14,15 @@
         android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
         <activity
             android:name=".ui.IntroActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".ui.RhythmActivity">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
                 `
             </intent-filter>
+        </activity>
+        <activity android:name=".ui.RhythmActivity">
         </activity>
         <activity
             android:name=".ui.GateActivity"
