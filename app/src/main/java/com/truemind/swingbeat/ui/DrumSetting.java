@@ -29,16 +29,17 @@ public class DrumSetting extends BaseActivity{
     private TextView settingItem3;
     private TextView settingItem4;
     private TextView settingItem5;
+    private TextView settingItem6;
 
     Spinner spinner1;
     Spinner spinner2;
     Spinner spinner3;
     Spinner spinner4;
     Spinner spinner5;
-    private TextView saveNQuit;
-    private LinearLayout btnSave;
+    Spinner spinner6;
 
     AdapterSpinner adapterSpinner;
+    AdapterSpinner adapterSpinner2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,17 +53,21 @@ public class DrumSetting extends BaseActivity{
 
     public void initView(){
 
-        List<String> data = new ArrayList<>();
-        data.add("Kick"); data.add("Snare"); data.add("Hi-hat"); data.add("Small Tom"); data.add("Middle Tom");
-        data.add("Floor Tom"); data.add("16-inches Crash"); data.add("18-inches Crash"); data.add("Ride");
+        List<String> midiData = new ArrayList<>();
+        midiData.add("Kick"); midiData.add("Snare"); midiData.add("Hi-hat"); midiData.add("Small Tom"); midiData.add("Middle Tom");
+        midiData.add("Floor Tom"); midiData.add("16-inches Crash"); midiData.add("18-inches Crash"); midiData.add("Ride");
 
-        btnSave = (LinearLayout)findViewById(R.id.btnSave);
+        List<String> soundTrackData = new ArrayList<>();
+        soundTrackData.add("Funk1");
+        soundTrackData.add("Jazz1");
+        soundTrackData.add("Metronome");
 
         spinner1 = (Spinner)findViewById(R.id.spinner1);
         spinner2 = (Spinner)findViewById(R.id.spinner2);
         spinner3 = (Spinner)findViewById(R.id.spinner3);
         spinner4 = (Spinner)findViewById(R.id.spinner4);
         spinner5 = (Spinner)findViewById(R.id.spinner5);
+        spinner6 = (Spinner)findViewById(R.id.spinner6);
 
         settingTitle = (TextView)findViewById(R.id.settingTitle);
         settingItem1 = (TextView)findViewById(R.id.settingItem1);
@@ -70,27 +75,30 @@ public class DrumSetting extends BaseActivity{
         settingItem3 = (TextView)findViewById(R.id.settingItem3);
         settingItem4 = (TextView)findViewById(R.id.settingItem4);
         settingItem5 = (TextView)findViewById(R.id.settingItem5);
-        saveNQuit = (TextView)findViewById(R.id.saveNQuit);
+        settingItem6 = (TextView)findViewById(R.id.settingItem6);
 
-        setFontToViewBold(settingTitle, settingItem1, settingItem2, settingItem3, settingItem4, settingItem5, saveNQuit);
+        setFontToViewBold(settingTitle, settingItem1, settingItem2, settingItem3, settingItem4, settingItem5, settingItem6);
 
-        adapterSpinner = new AdapterSpinner(getContext(), data);
+        adapterSpinner = new AdapterSpinner(getContext(), midiData);
+        adapterSpinner2 = new AdapterSpinner(getContext(), soundTrackData);
+
         spinner1.setAdapter(adapterSpinner);
+        spinner1.setSelection(Constants.DRUM_KEY1-1);
         spinner2.setAdapter(adapterSpinner);
+        spinner2.setSelection(Constants.DRUM_KEY2-1);
         spinner3.setAdapter(adapterSpinner);
+        spinner3.setSelection(Constants.DRUM_KEY3-1);
         spinner4.setAdapter(adapterSpinner);
+        spinner4.setSelection(Constants.DRUM_KEY4-1);
         spinner5.setAdapter(adapterSpinner);
+        spinner5.setSelection(Constants.DRUM_KEY5-1);
+
+        spinner6.setAdapter(adapterSpinner2);
+        spinner6.setSelection(Constants.DRUM_SOUND_TRACK-1);
 
     }
 
     public void initListener(){
-
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goBack();
-            }
-        });
 
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -152,6 +160,17 @@ public class DrumSetting extends BaseActivity{
             }
         });
 
+        spinner6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Constants.DRUM_SOUND_TRACK = (position+1);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     public void goBack(){

@@ -23,6 +23,7 @@ public class Constants {
     public static int DRUM_KEY3 = 3;
     public static int DRUM_KEY4 = 8;
     public static int DRUM_KEY5 = 9;
+    public static int DRUM_SOUND_TRACK = 1;
 
     public static void initDrumSound(int key1, int key2, int key3, int key4, int key5){
         DRUM_KEY1 = key1;

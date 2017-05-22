@@ -2,11 +2,15 @@ package com.truemind.swingbeat.ui;
 
 import android.content.Intent;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 
 import com.truemind.swingbeat.BaseActivity;
@@ -31,6 +35,7 @@ public class DrumActivity extends BaseActivity {
     private ImageButton crash18;
     private ImageButton ride;
     private ImageButton setting;
+    private ImageButton play;
 
     SoundPool kickPool;
     SoundPool snarePool;
@@ -52,6 +57,10 @@ public class DrumActivity extends BaseActivity {
     int crash18Track;
     int rideTrack;
 
+    MediaPlayer mediaPlayer;
+    Animation bounce;
+
+    private boolean isPlay = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +72,7 @@ public class DrumActivity extends BaseActivity {
 
 
     public void initView() {
-
+        bounce = AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
         kick = (ImageButton) findViewById(R.id.kick);
         snare = (ImageButton) findViewById(R.id.snare);
         hihat = (ImageButton) findViewById(R.id.hihat);
@@ -74,6 +83,7 @@ public class DrumActivity extends BaseActivity {
         crash18 = (ImageButton) findViewById(R.id.crash18);
         ride = (ImageButton) findViewById(R.id.ride);
         setting = (ImageButton)findViewById(R.id.setting);
+        play = (ImageButton) findViewById(R.id.play);
         initSound();
     }
 
@@ -91,12 +101,21 @@ public class DrumActivity extends BaseActivity {
         kickTrack = kickPool.load(getContext(), R.raw.kick, 1);
         snareTrack = snarePool.load(getContext(), R.raw.snare, 1);
         hihatTrack = hihatPool.load(getContext(), R.raw.hihat, 1);
-        tomSTrack = tomSPool.load(getContext(), R.raw.rimshot, 1);
-        tomMTrack = tomMPool.load(getContext(), R.raw.rimshot, 1);
-        tomFTrack = tomFPool.load(getContext(), R.raw.rimshot, 1);
+        tomSTrack = tomSPool.load(getContext(), R.raw.tom_s, 1);
+        tomMTrack = tomMPool.load(getContext(), R.raw.tom_m, 1);
+        tomFTrack = tomFPool.load(getContext(), R.raw.tom_f, 1);
         crash16Track = crash16Pool.load(getContext(), R.raw.crash16, 1);
         crash18Track = crash18Pool.load(getContext(), R.raw.crash18, 1);
         rideTrack = ridePool.load(getContext(), R.raw.ride, 1);
+
+        if(Constants.DRUM_SOUND_TRACK == 1){
+            mediaPlayer = MediaPlayer.create(getContext(), R.raw.funk1);
+        }else if(Constants.DRUM_SOUND_TRACK == 2){
+            mediaPlayer = MediaPlayer.create(getContext(), R.raw.jazz1);
+        }else{
+            mediaPlayer = MediaPlayer.create(getContext(), R.raw.jazz1);
+        }
+
     }
 
     public SoundPool build(int para1, int para2, int para3) {
@@ -112,21 +131,51 @@ public class DrumActivity extends BaseActivity {
         kick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                kickPool.play(kickTrack, 1, 1, 0, 0, 1);
+                kickPool.play(kickTrack, 1, 1, 1, 0, 1);
+                kick.startAnimation(bounce);
+            }
+        });
+        kick.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction()==0)
+                kickPool.play(kickTrack, 1, 1, 1, 0, 1);
+                kick.startAnimation(bounce);
+                return true;
             }
         });
 
         snare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                snarePool.play(snareTrack, 1, 1, 0, 0, 1);
+                snarePool.play(snareTrack, 1, 1, 2, 0, 1);
+                snare.startAnimation(bounce);
+            }
+        });
+        snare.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction()==0)
+                snarePool.play(snareTrack, 1, 1, 2, 0, 1);
+                snare.startAnimation(bounce);
+                return true;
             }
         });
 
         hihat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hihatPool.play(hihatTrack, 1, 1, 0, 0, 1);
+                hihatPool.play(hihatTrack, 1, 1, 2, 0, 1);
+                hihat.startAnimation(bounce);
+            }
+        });
+        hihat.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction()==0)
+                hihatPool.play(hihatTrack, 1, 1, 2, 0, 1);
+                hihat.startAnimation(bounce);
+                return true;
             }
         });
 
@@ -134,6 +183,16 @@ public class DrumActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 tomSPool.play(tomSTrack, 1, 1, 0, 0, 1);
+                tomS.startAnimation(bounce);
+            }
+        });
+        tomS.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction()==0)
+                tomSPool.play(tomSTrack, 1, 1, 0, 0, 1);
+                tomS.startAnimation(bounce);
+                return true;
             }
         });
 
@@ -141,6 +200,16 @@ public class DrumActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 tomMPool.play(tomMTrack, 1, 1, 0, 0, 1);
+                tomM.startAnimation(bounce);
+            }
+        });
+        tomM.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction()==0)
+                tomMPool.play(tomMTrack, 1, 1, 0, 0, 1);
+                tomM.startAnimation(bounce);
+                return true;
             }
         });
 
@@ -148,6 +217,16 @@ public class DrumActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 tomFPool.play(tomFTrack, 1, 1, 0, 0, 1);
+                tomF.startAnimation(bounce);
+            }
+        });
+        tomF.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction()==0)
+                tomFPool.play(tomFTrack, 1, 1, 0, 0, 1);
+                tomF.startAnimation(bounce);
+                return true;
             }
         });
 
@@ -155,13 +234,33 @@ public class DrumActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 crash16Pool.play(crash16Track, 1, 1, 0, 0, 1);
+                crash16.startAnimation(bounce);
+            }
+        });
+        crash16.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction()==0)
+                crash16Pool.play(crash16Track, 1, 1, 0, 0, 1);
+                crash16.startAnimation(bounce);
+                return true;
             }
         });
 
         crash18.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                crash18Pool.play(crash18Track, 1, 1, 0, 0, 1);
+                crash18Pool.play(crash18Track, 1, 1, 2, 0, 1);
+                crash18.startAnimation(bounce);
+            }
+        });
+        crash18.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction()==0)
+                crash18Pool.play(crash18Track, 1, 1, 2, 0, 1);
+                crash18.startAnimation(bounce);
+                return true;
             }
         });
 
@@ -169,19 +268,66 @@ public class DrumActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 ridePool.play(rideTrack, 1, 1, 0, 0, 1);
+                ride.startAnimation(bounce);
+            }
+        });
+        ride.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction()==0)
+                ridePool.play(rideTrack, 1, 1, 0, 0, 1);
+                ride.startAnimation(bounce);
+                return true;
             }
         });
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mediaPlayer.stop();
+                mediaPlayer.release();
                 Intent intent = new Intent(getContext(), DrumSetting.class);
                 startActivity(intent);
                 finish();
             }
         });
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isPlay = backTrack(isPlay);
+            }
+        });
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mediaPlayer.stop();
+                play.setSelected(false);
+            }
+        });
+    }
+
+    public boolean backTrack(boolean isPlay){
+        if(isPlay){
+            mediaPlayer.stop();
+            play.setSelected(false);
+            isPlay = false;
+        }else{
+            if(Constants.DRUM_SOUND_TRACK == 1){
+                mediaPlayer = MediaPlayer.create(getContext(), R.raw.funk1);
+            }else if(Constants.DRUM_SOUND_TRACK == 2){
+                mediaPlayer = MediaPlayer.create(getContext(), R.raw.jazz1);
+            }else{
+                mediaPlayer = MediaPlayer.create(getContext(), R.raw.jazz1);
+            }
+            mediaPlayer.start();
+            play.setSelected(true);
+            isPlay = true;
+        }
+        return isPlay;
     }
 
     public void goBack() {
+        mediaPlayer.stop();
+        mediaPlayer.release();
         Intent intent = new Intent(getContext(), GateActivity.class);
         startActivity(intent);
         finish();

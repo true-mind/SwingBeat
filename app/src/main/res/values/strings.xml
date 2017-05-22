@@ -20,4 +20,10 @@
     <string name="click4">4번 버튼 클릭 시 :</string>
     <string name="click5">5번 버튼 클릭 시 :</string>
     <string name="saveNQuit">저장하고 나가기</string>
+    <string name="sound_track">Sound Track</string>
+    <string name="_1">1</string>
+    <string name="_3">3</string>
+    <string name="_2">2</string>
+    <string name="perfect">Perfect!</string>
+    <string name="combo">Combo</string>
 </resources>
