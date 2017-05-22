@@ -21,6 +21,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ui.RhythmActivity"
+            android:screenOrientation="landscape"/>
         <activity android:name=".ui.GateActivity"
             android:theme="@style/AppThemeGreenBar"/>
         <activity android:name=".ui.DrumActivity"
