@@ -22,7 +22,8 @@
                 `
             </intent-filter>
         </activity>
-        <activity android:name=".ui.RhythmActivity">
+        <activity android:name=".ui.RhythmActivity"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".ui.GateActivity"

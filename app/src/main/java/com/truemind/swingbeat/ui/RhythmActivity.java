@@ -15,6 +15,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,8 +29,6 @@ import java.util.TimerTask;
 
 public class RhythmActivity extends BaseActivity {
 
-    FrameLayout parentLayout;
-
     ImageView move1_1;
     ImageView move1_2;
     ImageView move1_3;
@@ -40,9 +39,9 @@ public class RhythmActivity extends BaseActivity {
     ImageView move3_2;
     ImageView move3_3;
 
-    Button button1;
-    Button button2;
-    Button button3;
+    LinearLayout button1;
+    LinearLayout button2;
+    LinearLayout button3;
 
     private Handler media_handler;
     private Handler end_handler;
@@ -55,8 +54,16 @@ public class RhythmActivity extends BaseActivity {
 
     private ArrayList<ImageView> moveList;
 
+    private TextView tv;
+    private TextView tv1;
+    private TextView tv2;
+    private TextView tv3;
     private TextView tv_combo;
-    private TextView tv_timer;
+    private TextView tv_current;
+    private TextView tv_quit;
+    private ImageView timer1;
+    private ImageView timer2;
+    private ImageView timer3;
 
     private int combo;
     private int countdown = 3;
@@ -70,7 +77,7 @@ public class RhythmActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rhythm);
+        setContentView(R.layout.activity_rhythm_new);
 
         initView();
         initHandler();
@@ -82,13 +89,22 @@ public class RhythmActivity extends BaseActivity {
         new CountDownTimer(3050, 1000){
             @Override
             public void onTick(long millisUntilFinished) {
-                tv_timer.setText(""+countdown);
+                if(countdown==3){
+                    timer1.setImageResource(R.drawable.timer_on);
+                }
+                else if(countdown==2){
+                    timer2.setImageResource(R.drawable.timer_on);
+                }else if(countdown==1){
+                    timer3.setImageResource(R.drawable.timer_on);
+                }
                 countdown--;
             }
 
             @Override
             public void onFinish() {
-                tv_timer.setVisibility(View.GONE);
+                timer1.setVisibility(View.GONE);
+                timer2.setVisibility(View.GONE);
+                timer3.setVisibility(View.GONE);
                 initMoves();
             }
         }.start();
@@ -138,9 +154,6 @@ public class RhythmActivity extends BaseActivity {
     }
 
     private void initMoves(){
-        isOnView = new boolean[9];
-        isGood = new boolean[9];
-        isPerfect = new boolean[9];
         media_handler.sendEmptyMessageDelayed(0, 1900);
         sec = 1300;
 
@@ -529,17 +542,17 @@ public class RhythmActivity extends BaseActivity {
                     }
                 }
                 if(perfect!=-1){
-                    Toast.makeText(RhythmActivity.this, "Perfect", Toast.LENGTH_SHORT).show();
+                    tv_current.setText("Perfect");
                     end(moveList.get(perfect), perfect);
                     upCombo();
                 }
                 else if(good!=-1){
-                    Toast.makeText(RhythmActivity.this, "Good", Toast.LENGTH_SHORT).show();
+                    tv_current.setText("Good");
                     end(moveList.get(good), good);
                     upCombo();
                 }
                 else if(bad!=-1){
-                    Toast.makeText(RhythmActivity.this, "Bad", Toast.LENGTH_SHORT).show();
+                    tv_current.setText("Bad");
                     end(moveList.get(bad), bad);
                     upCombo();
                 }
@@ -564,17 +577,17 @@ public class RhythmActivity extends BaseActivity {
                     }
                 }
                 if(perfect!=-1){
-                    Toast.makeText(RhythmActivity.this, "Perfect", Toast.LENGTH_SHORT).show();
+                    tv_current.setText("Perfect");
                     end(moveList.get(perfect), perfect);
                     upCombo();
                 }
                 else if(good!=-1){
-                    Toast.makeText(RhythmActivity.this, "Good", Toast.LENGTH_SHORT).show();
+                    tv_current.setText("Good");
                     end(moveList.get(good), good);
                     upCombo();
                 }
                 else if(bad!=-1){
-                    Toast.makeText(RhythmActivity.this, "Bad", Toast.LENGTH_SHORT).show();
+                    tv_current.setText("Bad");
                     end(moveList.get(bad), bad);
                     upCombo();
                 }
@@ -599,17 +612,17 @@ public class RhythmActivity extends BaseActivity {
                     }
                 }
                 if(perfect!=-1){
-                    Toast.makeText(RhythmActivity.this, "Perfect", Toast.LENGTH_SHORT).show();
+                    tv_current.setText("Perfect");
                     end(moveList.get(perfect), perfect);
                     upCombo();
                 }
                 else if(good!=-1){
-                    Toast.makeText(RhythmActivity.this, "Good", Toast.LENGTH_SHORT).show();
+                    tv_current.setText("Good");
                     end(moveList.get(good), good);
                     upCombo();
                 }
                 else if(bad!=-1) {
-                    Toast.makeText(RhythmActivity.this, "Bad", Toast.LENGTH_SHORT).show();
+                    tv_current.setText("Bad");
                     end(moveList.get(bad), bad);
                     upCombo();
                 }
@@ -727,8 +740,8 @@ public class RhythmActivity extends BaseActivity {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             image.clearAnimation();
-            image.setY(0);
-            image.animate().translationY(1300).setDuration(2000).setInterpolator(AnimationUtils.loadInterpolator(RhythmActivity.this, android.R.anim.linear_interpolator)).start();
+            image.setX(0);
+            image.animate().translationX(1500).setDuration(2000).setInterpolator(AnimationUtils.loadInterpolator(RhythmActivity.this, android.R.anim.linear_interpolator)).start();
         }
     }
 
@@ -751,7 +764,9 @@ public class RhythmActivity extends BaseActivity {
     }
 
     private void initView() {
-        parentLayout = (FrameLayout) findViewById(R.id.parentLayout);
+        isOnView = new boolean[9];
+        isGood = new boolean[9];
+        isPerfect = new boolean[9];
 
         move1_1 = (ImageView) findViewById(R.id.move1_1);
         move1_2 = (ImageView) findViewById(R.id.move1_2);
@@ -774,12 +789,24 @@ public class RhythmActivity extends BaseActivity {
         moveList.add(move3_2);
         moveList.add(move3_3);
 
-        button1 = (Button) findViewById(R.id.button1);
-        button2 = (Button) findViewById(R.id.button2);
-        button3 = (Button) findViewById(R.id.button3);
+        button1 = (LinearLayout) findViewById(R.id.button1);
+        button2 = (LinearLayout) findViewById(R.id.button2);
+        button3 = (LinearLayout) findViewById(R.id.button3);
 
+        tv_quit = (TextView) findViewById(R.id.quit);
         tv_combo = (TextView) findViewById(R.id.tv_combo);
-        tv_timer = (TextView) findViewById(R.id.tv_timer);
+        tv_current = (TextView) findViewById(R.id.tv_current);
+        tv = (TextView) findViewById(R.id.tv_rhythm);
+        tv1 = (TextView) findViewById(R.id.tv1);
+        tv2 = (TextView) findViewById(R.id.tv2);
+        tv3 = (TextView) findViewById(R.id.tv3);
+
+        timer1 = (ImageView) findViewById(R.id.timer1);
+        timer2 = (ImageView) findViewById(R.id.timer2);
+        timer3 = (ImageView) findViewById(R.id.timer3);
+
+
+        setFontToViewBold(tv_combo, tv_quit, tv_current, tv, tv1, tv2, tv3);
     }
 
     @Override
