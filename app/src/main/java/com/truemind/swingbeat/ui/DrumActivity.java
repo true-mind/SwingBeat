@@ -46,6 +46,7 @@ public class DrumActivity extends BaseActivity {
     SoundPool crash16Pool;
     SoundPool crash18Pool;
     SoundPool ridePool;
+    SoundPool rimShotPool;
 
     int kickTrack;
     int snareTrack;
@@ -56,6 +57,7 @@ public class DrumActivity extends BaseActivity {
     int crash16Track;
     int crash18Track;
     int rideTrack;
+    int rimShotTrack;
 
     MediaPlayer mediaPlayer;
     Animation bounce;
@@ -97,6 +99,7 @@ public class DrumActivity extends BaseActivity {
         crash16Pool = build(1, AudioManager.STREAM_MUSIC, 0);
         crash18Pool = build(1, AudioManager.STREAM_MUSIC, 0);
         ridePool = build(1, AudioManager.STREAM_MUSIC, 0);
+        rimShotPool = build(1, AudioManager.STREAM_MUSIC, 0);
 
         kickTrack = kickPool.load(getContext(), R.raw.kick, 1);
         snareTrack = snarePool.load(getContext(), R.raw.snare, 1);
@@ -107,6 +110,7 @@ public class DrumActivity extends BaseActivity {
         crash16Track = crash16Pool.load(getContext(), R.raw.crash16, 1);
         crash18Track = crash18Pool.load(getContext(), R.raw.crash18, 1);
         rideTrack = ridePool.load(getContext(), R.raw.ride, 1);
+        rimShotTrack = rimShotPool.load(getContext(), R.raw.rimshot, 1);
 
         if(Constants.DRUM_SOUND_TRACK == 1){
             mediaPlayer = MediaPlayer.create(getContext(), R.raw.funk1);
@@ -396,6 +400,9 @@ public class DrumActivity extends BaseActivity {
                 break;
             case Constants.RIDE:
                 ride.performClick();
+                break;
+            case Constants.RIMSHOT:
+                rimShotPool.play(rimShotTrack, 1, 1, 2, 0, 1);
                 break;
         }
     }

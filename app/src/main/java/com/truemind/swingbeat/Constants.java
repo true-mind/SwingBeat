@@ -17,6 +17,7 @@ public class Constants {
     public static final int CRASH_16 = 7;
     public static final int CRASH_18 = 8;
     public static final int RIDE = 9;
+    public static final int RIMSHOT = 10;
 
     public static int DRUM_KEY1 = 1;
     public static int DRUM_KEY2 = 2;

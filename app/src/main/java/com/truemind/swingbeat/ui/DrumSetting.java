@@ -55,7 +55,7 @@ public class DrumSetting extends BaseActivity{
 
         List<String> midiData = new ArrayList<>();
         midiData.add("Kick"); midiData.add("Snare"); midiData.add("Hi-hat"); midiData.add("Small Tom"); midiData.add("Middle Tom");
-        midiData.add("Floor Tom"); midiData.add("16-inches Crash"); midiData.add("18-inches Crash"); midiData.add("Ride");
+        midiData.add("Floor Tom"); midiData.add("16-inches Crash"); midiData.add("18-inches Crash"); midiData.add("Ride"); midiData.add("Stick");
 
         List<String> soundTrackData = new ArrayList<>();
         soundTrackData.add("Funk1");

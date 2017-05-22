@@ -71,16 +71,16 @@ public abstract class BaseActivity extends Activity {
     public boolean dispatchKeyEvent(KeyEvent event) {
         if(event.getAction() == KeyEvent.ACTION_DOWN) {
             int keyCode = event.getKeyCode();
-            if(keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
+            if(keyCode == KeyEvent.KEYCODE_DPAD_UP) {
                 onkey1();
             }
-            else if(keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
+            else if(keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
                 onkey2();
             }
-            else if(keyCode == KeyEvent.KEYCODE_DPAD_UP) {
+            else if(keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
                 onkey3();
             }
-            else if(keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
+            else if(keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
                 onkey4();
             }
             else if(keyCode == KeyEvent.KEYCODE_ENTER) {
