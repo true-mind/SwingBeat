@@ -5,13 +5,12 @@
     android:background="#fff"
     android:orientation="vertical">
 
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -32,98 +31,199 @@
     </LinearLayout>
 
 
-    <LinearLayout style="@style/settingSpinnerBase">
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:scrollbars="none">
 
-        <TextView
-            android:minWidth="120dp"
-            android:id="@+id/settingItem1"
-            style="@style/settingSpinnerDescription"
-            android:text="@string/click1" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <Spinner
-            android:id="@+id/spinner1"
-            style="@style/settingSpinnerStyle" />
+            <LinearLayout style="@style/settingSpinnerBase">
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/settingItem1"
+                    style="@style/settingSpinnerDescription"
+                    android:minWidth="120dp"
+                    android:text="@string/click1" />
 
-    <LinearLayout style="@style/settingSpinnerBase">
+                <Spinner
+                    android:id="@+id/spinner1"
+                    style="@style/settingSpinnerStyle" />
 
-        <TextView
-            android:minWidth="120dp"
-            android:id="@+id/settingItem2"
-            style="@style/settingSpinnerDescription"
-            android:text="@string/click2" />
+            </LinearLayout>
 
-        <Spinner
-            android:id="@+id/spinner2"
-            style="@style/settingSpinnerStyle" />
+            <LinearLayout style="@style/settingSpinnerBase">
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/settingItem2"
+                    style="@style/settingSpinnerDescription"
+                    android:minWidth="120dp"
+                    android:text="@string/click2" />
 
-    <LinearLayout style="@style/settingSpinnerBase">
+                <Spinner
+                    android:id="@+id/spinner2"
+                    style="@style/settingSpinnerStyle" />
 
-        <TextView
-            android:minWidth="120dp"
-            android:id="@+id/settingItem3"
-            style="@style/settingSpinnerDescription"
-            android:text="@string/click3" />
+            </LinearLayout>
 
-        <Spinner
-            android:id="@+id/spinner3"
-            style="@style/settingSpinnerStyle" />
+            <LinearLayout style="@style/settingSpinnerBase">
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/settingItem3"
+                    style="@style/settingSpinnerDescription"
+                    android:minWidth="120dp"
+                    android:text="@string/click3" />
 
-    <LinearLayout style="@style/settingSpinnerBase">
+                <Spinner
+                    android:id="@+id/spinner3"
+                    style="@style/settingSpinnerStyle" />
 
-        <TextView
-            android:minWidth="120dp"
-            android:id="@+id/settingItem4"
-            style="@style/settingSpinnerDescription"
-            android:text="@string/click4" />
+            </LinearLayout>
 
-        <Spinner
-            android:id="@+id/spinner4"
-            style="@style/settingSpinnerStyle" />
+            <LinearLayout style="@style/settingSpinnerBase">
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/settingItem4"
+                    style="@style/settingSpinnerDescription"
+                    android:minWidth="120dp"
+                    android:text="@string/click4" />
 
-    <LinearLayout style="@style/settingSpinnerBase">
+                <Spinner
+                    android:id="@+id/spinner4"
+                    style="@style/settingSpinnerStyle" />
 
-        <TextView
-            android:minWidth="120dp"
-            android:id="@+id/settingItem5"
-            style="@style/settingSpinnerDescription"
-            android:text="@string/click5" />
+            </LinearLayout>
 
-        <Spinner
-            android:id="@+id/spinner5"
-            style="@style/settingSpinnerStyle" />
+            <LinearLayout style="@style/settingSpinnerBase">
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/settingItem5"
+                    style="@style/settingSpinnerDescription"
+                    android:minWidth="120dp"
+                    android:text="@string/click5" />
 
-    <LinearLayout style="@style/settingSpinnerBase">
+                <Spinner
+                    android:id="@+id/spinner5"
+                    style="@style/settingSpinnerStyle" />
 
-        <TextView
-            android:minWidth="120dp"
-            android:id="@+id/settingItem6"
-            style="@style/settingSpinnerDescription"
-            android:text="@string/sound_track" />
+            </LinearLayout>
 
-        <Spinner
-            android:id="@+id/spinner6"
-            style="@style/settingSpinnerStyle" />
+            <LinearLayout style="@style/settingSpinnerBase">
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/settingItem6"
+                    style="@style/settingSpinnerDescription"
+                    android:minWidth="120dp"
+                    android:text="@string/sound_track" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical">
+                <Spinner
+                    android:id="@+id/spinner6"
+                    style="@style/settingSpinnerStyle" />
 
-    </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="20dp">
+
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:textColor="#666"
+                    android:textSize="22sp"
+                    android:id="@+id/additional"
+                    android:minWidth="120dp"
+                    android:text="※ Additional Buttons" />
+
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/settingSpinnerBase">
+
+                <TextView
+                    android:id="@+id/settingItem7"
+                    style="@style/settingSpinnerDescription2"
+                    android:minWidth="120dp"
+                    android:text="@string/click6" />
+
+                <Spinner
+                    android:id="@+id/spinner7"
+                    style="@style/settingSpinnerStyle" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/settingSpinnerBase">
+
+                <TextView
+                    android:id="@+id/settingItem8"
+                    style="@style/settingSpinnerDescription2"
+                    android:minWidth="120dp"
+                    android:text="@string/click7" />
+
+                <Spinner
+                    android:id="@+id/spinner8"
+                    style="@style/settingSpinnerStyle" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/settingSpinnerBase">
+
+                <TextView
+                    android:id="@+id/settingItem9"
+                    style="@style/settingSpinnerDescription2"
+                    android:minWidth="120dp"
+                    android:text="@string/click8" />
+
+                <Spinner
+                    android:id="@+id/spinner9"
+                    style="@style/settingSpinnerStyle" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/settingSpinnerBase">
+
+                <TextView
+                    android:id="@+id/settingItem10"
+                    style="@style/settingSpinnerDescription2"
+                    android:minWidth="120dp"
+                    android:text="@string/click9" />
+
+                <Spinner
+                    android:id="@+id/spinner10"
+                    style="@style/settingSpinnerStyle" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/settingSpinnerBase">
+
+                <TextView
+                    android:id="@+id/settingItem11"
+                    style="@style/settingSpinnerDescription2"
+                    android:minWidth="120dp"
+                    android:text="@string/click10" />
+
+                <Spinner
+                    android:id="@+id/spinner11"
+                    style="@style/settingSpinnerStyle" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
 
 
 

@@ -826,12 +826,37 @@ public class RhythmActivity extends BaseActivity {
 
     @Override
     public void onkey4() {
-
+        //Intentionally do nothing
     }
 
     @Override
     public void onkey5() {
+        //Intentionally do nothing
+    }
 
+    @Override
+    public void onkey6() {
+        //Intentionally do nothing
+    }
+
+    @Override
+    public void onkey7() {
+        //Intentionally do nothing
+    }
+
+    @Override
+    public void onkey8() {
+        //Intentionally do nothing
+    }
+
+    @Override
+    public void onkey9() {
+        //Intentionally do nothing
+    }
+
+    @Override
+    public void onkey10() {
+        //Intentionally do nothing
     }
 
     @Override

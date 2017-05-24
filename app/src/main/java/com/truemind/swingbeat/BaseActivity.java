@@ -86,6 +86,21 @@ public abstract class BaseActivity extends Activity {
             else if(keyCode == KeyEvent.KEYCODE_ENTER) {
                 onkey5();
             }
+            else if(keyCode == KeyEvent.KEYCODE_1) {
+                onkey6();
+            }
+            else if(keyCode == KeyEvent.KEYCODE_2) {
+                onkey7();
+            }
+            else if(keyCode == KeyEvent.KEYCODE_3) {
+                onkey8();
+            }
+            else if(keyCode == KeyEvent.KEYCODE_4) {
+                onkey9();
+            }
+            else if(keyCode == KeyEvent.KEYCODE_5) {
+                onkey10();
+            }
             else if(keyCode == KeyEvent.KEYCODE_BACK){
                 onKeyBack();
             }else if(keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
@@ -109,6 +124,13 @@ public abstract class BaseActivity extends Activity {
     public abstract void onkey3();
     public abstract void onkey4();
     public abstract void onkey5();
+
+    public abstract void onkey6();
+    public abstract void onkey7();
+    public abstract void onkey8();
+    public abstract void onkey9();
+    public abstract void onkey10();
+
     public abstract void onKeyBack();
 
 }

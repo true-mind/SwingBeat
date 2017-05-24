@@ -142,9 +142,10 @@ public class DrumActivity extends BaseActivity {
         kick.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction()==0)
-                kickPool.play(kickTrack, 1, 1, 1, 0, 1);
-                kick.startAnimation(bounce);
+                if(event.getAction()==0) {
+                    kickPool.play(kickTrack, 1, 1, 1, 0, 1);
+                    kick.startAnimation(bounce);
+                }
                 return true;
             }
         });
@@ -159,9 +160,10 @@ public class DrumActivity extends BaseActivity {
         snare.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction()==0)
-                snarePool.play(snareTrack, 1, 1, 2, 0, 1);
-                snare.startAnimation(bounce);
+                if(event.getAction()==0) {
+                    snarePool.play(snareTrack, 1, 1, 2, 0, 1);
+                    snare.startAnimation(bounce);
+                }
                 return true;
             }
         });
@@ -176,9 +178,10 @@ public class DrumActivity extends BaseActivity {
         hihat.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction()==0)
-                hihatPool.play(hihatTrack, 1, 1, 2, 0, 1);
-                hihat.startAnimation(bounce);
+                if(event.getAction()==0) {
+                    hihatPool.play(hihatTrack, 1, 1, 2, 0, 1);
+                    hihat.startAnimation(bounce);
+                }
                 return true;
             }
         });
@@ -193,9 +196,10 @@ public class DrumActivity extends BaseActivity {
         tomS.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction()==0)
-                tomSPool.play(tomSTrack, 1, 1, 0, 0, 1);
-                tomS.startAnimation(bounce);
+                if(event.getAction()==0) {
+                    tomSPool.play(tomSTrack, 1, 1, 0, 0, 1);
+                    tomS.startAnimation(bounce);
+                }
                 return true;
             }
         });
@@ -210,9 +214,10 @@ public class DrumActivity extends BaseActivity {
         tomM.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction()==0)
-                tomMPool.play(tomMTrack, 1, 1, 0, 0, 1);
-                tomM.startAnimation(bounce);
+                if(event.getAction()==0) {
+                    tomMPool.play(tomMTrack, 1, 1, 0, 0, 1);
+                    tomM.startAnimation(bounce);
+                }
                 return true;
             }
         });
@@ -227,9 +232,10 @@ public class DrumActivity extends BaseActivity {
         tomF.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction()==0)
-                tomFPool.play(tomFTrack, 1, 1, 0, 0, 1);
-                tomF.startAnimation(bounce);
+                if(event.getAction()==0) {
+                    tomFPool.play(tomFTrack, 1, 1, 0, 0, 1);
+                    tomF.startAnimation(bounce);
+                }
                 return true;
             }
         });
@@ -244,9 +250,10 @@ public class DrumActivity extends BaseActivity {
         crash16.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction()==0)
-                crash16Pool.play(crash16Track, 1, 1, 0, 0, 1);
-                crash16.startAnimation(bounce);
+                if(event.getAction()==0) {
+                    crash16Pool.play(crash16Track, 1, 1, 0, 0, 1);
+                    crash16.startAnimation(bounce);
+                }
                 return true;
             }
         });
@@ -261,9 +268,10 @@ public class DrumActivity extends BaseActivity {
         crash18.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction()==0)
-                crash18Pool.play(crash18Track, 1, 1, 2, 0, 1);
-                crash18.startAnimation(bounce);
+                if(event.getAction()==0) {
+                    crash18Pool.play(crash18Track, 1, 1, 2, 0, 1);
+                    crash18.startAnimation(bounce);
+                }
                 return true;
             }
         });
@@ -278,9 +286,10 @@ public class DrumActivity extends BaseActivity {
         ride.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction()==0)
-                ridePool.play(rideTrack, 1, 1, 0, 0, 1);
-                ride.startAnimation(bounce);
+                if(event.getAction()==0) {
+                    ridePool.play(rideTrack, 1, 1, 0, 0, 1);
+                    ride.startAnimation(bounce);
+                }
                 return true;
             }
         });
@@ -319,8 +328,16 @@ public class DrumActivity extends BaseActivity {
                 mediaPlayer = MediaPlayer.create(getContext(), R.raw.funk1);
             }else if(Constants.DRUM_SOUND_TRACK == 2){
                 mediaPlayer = MediaPlayer.create(getContext(), R.raw.jazz1);
+            }else if(Constants.DRUM_SOUND_TRACK == 3){
+                mediaPlayer = MediaPlayer.create(getContext(), R.raw.rock1);
+            }else if(Constants.DRUM_SOUND_TRACK == 4){
+                mediaPlayer = MediaPlayer.create(getContext(), R.raw.slow_rock1);
+            }else if(Constants.DRUM_SOUND_TRACK == 5){
+                mediaPlayer = MediaPlayer.create(getContext(), R.raw.bossa1);
+            }else if(Constants.DRUM_SOUND_TRACK == 6){
+                mediaPlayer = MediaPlayer.create(getContext(), R.raw.bossa2);
             }else{
-                mediaPlayer = MediaPlayer.create(getContext(), R.raw.jazz1);
+
             }
             mediaPlayer.start();
             play.setSelected(true);
@@ -368,6 +385,31 @@ public class DrumActivity extends BaseActivity {
     }
 
     @Override
+    public void onkey6() {
+        performDrumClick(Constants.DRUM_KEY6);
+    }
+
+    @Override
+    public void onkey7() {
+        performDrumClick(Constants.DRUM_KEY7);
+    }
+
+    @Override
+    public void onkey8() {
+        performDrumClick(Constants.DRUM_KEY8);
+    }
+
+    @Override
+    public void onkey9() {
+        performDrumClick(Constants.DRUM_KEY9);
+    }
+
+    @Override
+    public void onkey10() {
+        performDrumClick(Constants.DRUM_KEY10);
+    }
+
+    @Override
     public void onKeyBack() {
         goBack();
     }
@@ -403,6 +445,7 @@ public class DrumActivity extends BaseActivity {
                 break;
             case Constants.RIMSHOT:
                 rimShotPool.play(rimShotTrack, 1, 1, 2, 0, 1);
+                snare.startAnimation(bounce);
                 break;
         }
     }

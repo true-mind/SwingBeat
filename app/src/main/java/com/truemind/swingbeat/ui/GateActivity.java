@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import com.truemind.swingbeat.BaseActivity;
 import com.truemind.swingbeat.Constants;
 import com.truemind.swingbeat.R;
+import com.truemind.swingbeat.util.CommonDialog;
 
 public class GateActivity extends BaseActivity {
 
@@ -19,6 +21,7 @@ public class GateActivity extends BaseActivity {
     private ImageButton btnGame;
     private ImageButton btnTest;
     private ImageButton btnBT;
+    private Button btnManual;
 
     /**for onBackPress*/
     public final long FINISH_INTERVAL_TIME = 2000;
@@ -50,9 +53,10 @@ public class GateActivity extends BaseActivity {
         btnGame = (ImageButton)findViewById(R.id.btnGame);
         btnTest = (ImageButton)findViewById(R.id.btnTest);
         btnBT = (ImageButton)findViewById(R.id.btnBT);
+        btnManual = (Button)findViewById(R.id.btnManual);
 
         setFontToViewBold(txtDrumTitle, txtDrum1, txtDrum2, txtGameTitle, txtGame1,
-                txtGame2, txtTestTitle, txtTestTitle, txtTest1, txtTest2, txtGoHomePage);
+                txtGame2, txtTestTitle, txtTestTitle, txtTest1, txtTest2, txtGoHomePage, btnManual);
 
     }
 
@@ -75,8 +79,7 @@ public class GateActivity extends BaseActivity {
         btnDrum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), DrumActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(getContext(), DrumActivity.class));
                 finish();
             }
         });
@@ -92,7 +95,16 @@ public class GateActivity extends BaseActivity {
         btnTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(getContext(), TestIntro.class));
+                finish();
+            }
+        });
 
+        btnManual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonDialog dialog = new CommonDialog();
+                dialog.showDialog(getContext(), "Key Map", getResources().getString(R.string.KeyMap), true, "확인 (Enter)");
             }
         });
 
@@ -119,21 +131,20 @@ public class GateActivity extends BaseActivity {
 
     @Override
     public void onkey1() {
-        Intent intent = new Intent(getContext(), DrumActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(getContext(), DrumActivity.class));
         finish();
     }
 
     @Override
     public void onkey2() {
-        Intent intent = new Intent(getContext(), RhythmActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(getContext(), RhythmActivity.class));
         finish();
     }
 
     @Override
     public void onkey3() {
-        //TODO Move to TestActivity
+        startActivity(new Intent(getContext(), TestIntro.class));
+        finish();
     }
 
     @Override
@@ -143,6 +154,31 @@ public class GateActivity extends BaseActivity {
 
     @Override
     public void onkey5() {
+        //Intentionally do nothing
+    }
+
+    @Override
+    public void onkey6() {
+        //Intentionally do nothing
+    }
+
+    @Override
+    public void onkey7() {
+        //Intentionally do nothing
+    }
+
+    @Override
+    public void onkey8() {
+        //Intentionally do nothing
+    }
+
+    @Override
+    public void onkey9() {
+        //Intentionally do nothing
+    }
+
+    @Override
+    public void onkey10() {
         //Intentionally do nothing
     }
 

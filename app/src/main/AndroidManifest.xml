@@ -34,11 +34,20 @@
         <activity
             android:name=".ui.DrumSetting"
             android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.TestIntro"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.TestActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.TestResult"
+            android:screenOrientation="landscape" />
 
         <service
             android:name=".service.MpPlayer"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true"/>
     </application>
 
 </manifest>

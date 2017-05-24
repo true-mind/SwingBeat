@@ -5,4 +5,10 @@
     <color name="colorPrimaryDark">#336600</color>
     <color name="colorAccent">#d6e0cc</color>
     <color name="color_empty">#00FFFFFF</color>
+    <color name="color_btn_test">#545c56</color>
+    <color name="color_btn_test_p">#1c1c23</color>
+    <color name="color_blue">#6666ff</color>
+    <color name="color_red">#ff6666</color>
+    <color name="color_green">#66ff66</color>
+    <color name="color_yellow">#ffff66</color>
 </resources>

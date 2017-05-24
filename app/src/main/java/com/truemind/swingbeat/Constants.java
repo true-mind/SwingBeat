@@ -6,7 +6,7 @@ package com.truemind.swingbeat;
 
 public class Constants {
 
-    public final static String MINTO_WEB_LINK = "http://mintosys.com/";
+    public final static String MINTO_WEB_LINK = "http://www.mintosys.com/blogPost/swingair";
 
     public static final int KICK = 1;
     public static final int SNARE = 2;
@@ -19,12 +19,18 @@ public class Constants {
     public static final int RIDE = 9;
     public static final int RIMSHOT = 10;
 
-    public static int DRUM_KEY1 = 1;
-    public static int DRUM_KEY2 = 2;
-    public static int DRUM_KEY3 = 3;
+    public static int DRUM_KEY1 = 3;
+    public static int DRUM_KEY2 = 10;
+    public static int DRUM_KEY3 = 1;
     public static int DRUM_KEY4 = 8;
     public static int DRUM_KEY5 = 9;
-    public static int DRUM_SOUND_TRACK = 1;
+    public static int DRUM_KEY6 = 2;
+    public static int DRUM_KEY7 = 4;
+    public static int DRUM_KEY8 = 5;
+    public static int DRUM_KEY9 = 6;
+    public static int DRUM_KEY10 = 7;
+
+    public static int DRUM_SOUND_TRACK = 6;
 
     public static void initDrumSound(int key1, int key2, int key3, int key4, int key5){
         DRUM_KEY1 = key1;
@@ -34,4 +40,6 @@ public class Constants {
         DRUM_KEY5 = key5;
     }
 
+    public static int TIMER = 1000;
+    public static int TIMER_SPINNER_POSITION = 2;
 }

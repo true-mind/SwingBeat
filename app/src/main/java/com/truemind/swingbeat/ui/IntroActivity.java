@@ -67,6 +67,31 @@ public class IntroActivity extends BaseActivity {
     }
 
     @Override
+    public void onkey6() {
+
+    }
+
+    @Override
+    public void onkey7() {
+
+    }
+
+    @Override
+    public void onkey8() {
+
+    }
+
+    @Override
+    public void onkey9() {
+
+    }
+
+    @Override
+    public void onkey10() {
+
+    }
+
+    @Override
     public void onKeyBack() {
         finish();
     }
