@@ -1,31 +1,24 @@
-package com.truemind.swingbeat.ui;
+package com.truemind.swingbeat.ui.rhythm;
 
 import android.content.Intent;
 import android.graphics.Point;
-import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Display;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.truemind.swingbeat.BaseActivity;
 import com.truemind.swingbeat.Constants;
 import com.truemind.swingbeat.R;
 import com.truemind.swingbeat.service.MpPlayer;
+import com.truemind.swingbeat.ui.GateActivity;
 
 import java.util.ArrayList;
 import java.util.Timer;
