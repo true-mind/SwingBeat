@@ -18,19 +18,12 @@ import com.truemind.swingbeat.ui.GateActivity;
 
 public class RhythmResult extends BaseActivity {
 
-    private TextView title;
-    private TextView comboTitle;
     private TextView combo;
     private TextView perfect;
-    private TextView perfectTitle;
     private TextView good;
-    private TextView goodTitle;
     private TextView bad;
-    private TextView badTitle;
     private TextView total;
-    private TextView totalTitle;
     private LinearLayout btnMain;
-    private TextView btnText;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,19 +37,20 @@ public class RhythmResult extends BaseActivity {
 
     public void initView(){
 
-        title = (TextView)findViewById(R.id.title);
+        TextView title = (TextView) findViewById(R.id.title);
+        TextView comboTitle = (TextView) findViewById(R.id.comboTitle);
+        TextView perfectTitle = (TextView) findViewById(R.id.perfectTitle);
+        TextView goodTitle = (TextView) findViewById(R.id.goodTitle);
+        TextView badTitle = (TextView) findViewById(R.id.badTitle);
+        TextView totalTitle = (TextView) findViewById(R.id.totalTitle);
+        TextView btnText = (TextView) findViewById(R.id.btnText);
+
         combo = (TextView)findViewById(R.id.combo);
-        comboTitle = (TextView)findViewById(R.id.comboTitle);
         perfect = (TextView)findViewById(R.id.perfect);
-        perfectTitle = (TextView)findViewById(R.id.perfectTitle);
         good = (TextView)findViewById(R.id.good);
-        goodTitle = (TextView)findViewById(R.id.goodTitle);
         bad = (TextView)findViewById(R.id.bad);
-        badTitle = (TextView)findViewById(R.id.badTitle);
         total = (TextView)findViewById(R.id.total);
-        totalTitle = (TextView)findViewById(R.id.totalTitle);
         btnMain = (LinearLayout)findViewById(R.id.btnMain);
-        btnText = (TextView)findViewById(R.id.btnText);
 
 
         setFontToViewBold(combo, comboTitle, perfect, perfectTitle, good, goodTitle,

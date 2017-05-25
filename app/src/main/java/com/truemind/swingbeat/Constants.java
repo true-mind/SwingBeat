@@ -11,24 +11,26 @@ public class Constants {
     public static final int KICK = 1;
     public static final int SNARE = 2;
     public static final int HIHAT = 3;
-    public static final int SMALL_TOM = 4;
-    public static final int MIDDLE_TOM = 5;
-    public static final int FLOOR_TOM = 6;
-    public static final int CRASH_16 = 7;
-    public static final int CRASH_18 = 8;
-    public static final int RIDE = 9;
-    public static final int RIMSHOT = 10;
+    public static final int HIHAT_OPEN = 4;
+    public static final int SMALL_TOM = 5;
+    public static final int MIDDLE_TOM = 6;
+    public static final int FLOOR_TOM = 7;
+    public static final int CRASH_16 = 8;
+    public static final int CRASH_18 = 9;
+    public static final int RIDE = 10;
+    public static final int RIMSHOT = 11;
+    public static final int BRUSH = 12;
 
     public static int DRUM_KEY1 = 3;
-    public static int DRUM_KEY2 = 10;
+    public static int DRUM_KEY2 = 11;
     public static int DRUM_KEY3 = 1;
-    public static int DRUM_KEY4 = 8;
-    public static int DRUM_KEY5 = 9;
+    public static int DRUM_KEY4 = 9;
+    public static int DRUM_KEY5 = 10;
     public static int DRUM_KEY6 = 2;
-    public static int DRUM_KEY7 = 4;
-    public static int DRUM_KEY8 = 5;
-    public static int DRUM_KEY9 = 6;
-    public static int DRUM_KEY10 = 7;
+    public static int DRUM_KEY7 = 5;
+    public static int DRUM_KEY8 = 6;
+    public static int DRUM_KEY9 = 7;
+    public static int DRUM_KEY10 = 12;
 
     public static int DRUM_SOUND_TRACK = 6;
 

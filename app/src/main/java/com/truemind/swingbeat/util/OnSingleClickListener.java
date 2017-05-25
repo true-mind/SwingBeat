@@ -6,10 +6,11 @@ package com.truemind.swingbeat.util;
 import android.os.SystemClock;
 import android.view.View;
 
-public abstract class OnSingleClickListener implements View.OnClickListener {
-    // 중복 클릭 방지 시간 설정
-    private static final long MIN_CLICK_INTERVAL=500;
+import com.truemind.swingbeat.Constants;
 
+public abstract class OnSingleClickListener implements View.OnClickListener {
+
+    private static final long MIN_CLICK_INTERVAL = (Constants.TIMER/2);
     private long mLastClickTime;
 
     public abstract void onSingleClick(View v);
@@ -20,12 +21,10 @@ public abstract class OnSingleClickListener implements View.OnClickListener {
         long elapsedTime=currentClickTime-mLastClickTime;
         mLastClickTime=currentClickTime;
 
-        // 중복 클릭인 경우
         if(elapsedTime<=MIN_CLICK_INTERVAL){
             return;
         }
 
-        // 중복 클릭아 아니라면 추상함수 호출
         onSingleClick(v);
     }
 

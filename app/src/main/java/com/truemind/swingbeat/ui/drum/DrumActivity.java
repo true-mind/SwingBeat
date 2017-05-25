@@ -11,7 +11,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 
 import com.truemind.swingbeat.BaseActivity;
 import com.truemind.swingbeat.Constants;
@@ -25,10 +27,12 @@ import com.truemind.swingbeat.ui.GateActivity;
 public class DrumActivity extends BaseActivity {
 
     private static final String TAG = "MyTag";
+    public static int SNARE_WHAT = 1;
 
     private ImageButton kick;
     private ImageButton snare;
     private ImageButton hihat;
+    private ImageButton hihat_open;
     private ImageButton tomS;
     private ImageButton tomM;
     private ImageButton tomF;
@@ -38,9 +42,14 @@ public class DrumActivity extends BaseActivity {
     private ImageButton setting;
     private ImageButton play;
 
+    private RadioButton rdoBtn1;
+    private RadioButton rdoBtn2;
+    private RadioButton rdoBtn3;
+
     SoundPool kickPool;
     SoundPool snarePool;
     SoundPool hihatPool;
+    SoundPool hihatPool_open;
     SoundPool tomSPool;
     SoundPool tomMPool;
     SoundPool tomFPool;
@@ -48,22 +57,26 @@ public class DrumActivity extends BaseActivity {
     SoundPool crash18Pool;
     SoundPool ridePool;
     SoundPool rimShotPool;
+    SoundPool brushPool;
 
-    int kickTrack;
-    int snareTrack;
-    int hihatTrack;
-    int tomSTrack;
-    int tomMTrack;
-    int tomFTrack;
-    int crash16Track;
-    int crash18Track;
-    int rideTrack;
-    int rimShotTrack;
+    static int kickTrack;
+    static int snareTrack;
+    static int hihatTrack;
+    static int hihatOpenTrack;
+    static int tomSTrack;
+    static int tomMTrack;
+    static int tomFTrack;
+    static int crash16Track;
+    static int crash18Track;
+    static int rideTrack;
+    static int rimShotTrack;
+    static int brushTrack;
 
     MediaPlayer mediaPlayer;
     Animation bounce;
 
     private boolean isPlay = false;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,25 +88,32 @@ public class DrumActivity extends BaseActivity {
 
 
     public void initView() {
-        bounce = AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
+        bounce = AnimationUtils.loadAnimation(getContext(), R.anim.bounce);
         kick = (ImageButton) findViewById(R.id.kick);
         snare = (ImageButton) findViewById(R.id.snare);
         hihat = (ImageButton) findViewById(R.id.hihat);
+        hihat_open = (ImageButton) findViewById(R.id.hihat_open);
         tomS = (ImageButton) findViewById(R.id.tomSmall);
         tomM = (ImageButton) findViewById(R.id.tomMiddle);
         tomF = (ImageButton) findViewById(R.id.tomFloor);
         crash16 = (ImageButton) findViewById(R.id.crash16);
         crash18 = (ImageButton) findViewById(R.id.crash18);
         ride = (ImageButton) findViewById(R.id.ride);
-        setting = (ImageButton)findViewById(R.id.setting);
+        setting = (ImageButton) findViewById(R.id.setting);
         play = (ImageButton) findViewById(R.id.play);
+        rdoBtn1 = (RadioButton) findViewById(R.id.rdoS);
+        rdoBtn2 = (RadioButton) findViewById(R.id.rdoR);
+        rdoBtn3 = (RadioButton) findViewById(R.id.rdoB);
         initSound();
+        setFontToViewBold2(rdoBtn1, rdoBtn2, rdoBtn3);
     }
 
     public void initSound() {
         kickPool = build(1, AudioManager.STREAM_MUSIC, 0);
         snarePool = build(1, AudioManager.STREAM_MUSIC, 0);
+        brushPool = build(1, AudioManager.STREAM_MUSIC, 0);
         hihatPool = build(1, AudioManager.STREAM_MUSIC, 0);
+        hihatPool_open = build(1, AudioManager.STREAM_MUSIC, 0);
         tomSPool = build(1, AudioManager.STREAM_MUSIC, 0);
         tomMPool = build(1, AudioManager.STREAM_MUSIC, 0);
         tomFPool = build(1, AudioManager.STREAM_MUSIC, 0);
@@ -104,7 +124,9 @@ public class DrumActivity extends BaseActivity {
 
         kickTrack = kickPool.load(getContext(), R.raw.kick, 1);
         snareTrack = snarePool.load(getContext(), R.raw.snare, 1);
+        brushTrack = brushPool.load(getContext(), R.raw.brush, 1);
         hihatTrack = hihatPool.load(getContext(), R.raw.hihat, 1);
+        hihatOpenTrack = hihatPool_open.load(getContext(), R.raw.hihat_open, 1);
         tomSTrack = tomSPool.load(getContext(), R.raw.tom_s, 1);
         tomMTrack = tomMPool.load(getContext(), R.raw.tom_m, 1);
         tomFTrack = tomFPool.load(getContext(), R.raw.tom_f, 1);
@@ -113,14 +135,8 @@ public class DrumActivity extends BaseActivity {
         rideTrack = ridePool.load(getContext(), R.raw.ride, 1);
         rimShotTrack = rimShotPool.load(getContext(), R.raw.rimshot, 1);
 
-        if(Constants.DRUM_SOUND_TRACK == 1){
-            mediaPlayer = MediaPlayer.create(getContext(), R.raw.funk1);
-        }else if(Constants.DRUM_SOUND_TRACK == 2){
-            mediaPlayer = MediaPlayer.create(getContext(), R.raw.jazz1);
-        }else{
-            mediaPlayer = MediaPlayer.create(getContext(), R.raw.jazz1);
-        }
-
+        mediaPlayer = new MediaPlayer();
+        //mediaPlayer = MediaPlayer.create(getContext(), R.raw.bossa2);
     }
 
     public SoundPool build(int para1, int para2, int para3) {
@@ -143,7 +159,7 @@ public class DrumActivity extends BaseActivity {
         kick.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction()==0) {
+                if (event.getAction() == 0) {
                     kickPool.play(kickTrack, 1, 1, 1, 0, 1);
                     kick.startAnimation(bounce);
                 }
@@ -154,15 +170,41 @@ public class DrumActivity extends BaseActivity {
         snare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                snarePool.play(snareTrack, 1, 1, 2, 0, 1);
+                switch (SNARE_WHAT) {
+                    case Constants.SNARE:
+                        snarePool.play(snareTrack, 1, 1, 2, 0, 1);
+                        break;
+                    case Constants.RIMSHOT:
+                        rimShotPool.play(rimShotTrack, 1, 1, 2, 0, 1);
+                        break;
+                    case Constants.BRUSH:
+                        brushPool.play(brushTrack, 1, 1, 2, 0, 1);
+                        break;
+                    default:
+                        snarePool.play(snareTrack, 1, 1, 2, 0, 1);
+                        break;
+                }
                 snare.startAnimation(bounce);
             }
         });
         snare.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction()==0) {
-                    snarePool.play(snareTrack, 1, 1, 2, 0, 1);
+                if (event.getAction() == 0) {
+                    switch (SNARE_WHAT) {
+                        case Constants.SNARE:
+                            snarePool.play(snareTrack, 1, 1, 2, 0, 1);
+                            break;
+                        case Constants.RIMSHOT:
+                            rimShotPool.play(rimShotTrack, 1, 1, 2, 0, 1);
+                            break;
+                        case Constants.BRUSH:
+                            brushPool.play(brushTrack, 1, 1, 2, 0, 1);
+                            break;
+                        default:
+                            snarePool.play(snareTrack, 1, 1, 2, 0, 1);
+                            break;
+                    }
                     snare.startAnimation(bounce);
                 }
                 return true;
@@ -179,9 +221,27 @@ public class DrumActivity extends BaseActivity {
         hihat.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction()==0) {
+                if (event.getAction() == 0) {
                     hihatPool.play(hihatTrack, 1, 1, 2, 0, 1);
                     hihat.startAnimation(bounce);
+                }
+                return true;
+            }
+        });
+
+        hihat_open.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hihatPool_open.play(hihatOpenTrack, 1, 1, 2, 0, 1);
+                hihat_open.startAnimation(bounce);
+            }
+        });
+        hihat_open.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == 0) {
+                    hihatPool_open.play(hihatOpenTrack, 1, 1, 2, 0, 1);
+                    hihat_open.startAnimation(bounce);
                 }
                 return true;
             }
@@ -197,7 +257,7 @@ public class DrumActivity extends BaseActivity {
         tomS.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction()==0) {
+                if (event.getAction() == 0) {
                     tomSPool.play(tomSTrack, 1, 1, 2, 0, 1);
                     tomS.startAnimation(bounce);
                 }
@@ -215,7 +275,7 @@ public class DrumActivity extends BaseActivity {
         tomM.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction()==0) {
+                if (event.getAction() == 0) {
                     tomMPool.play(tomMTrack, 1, 1, 2, 0, 1);
                     tomM.startAnimation(bounce);
                 }
@@ -233,7 +293,7 @@ public class DrumActivity extends BaseActivity {
         tomF.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction()==0) {
+                if (event.getAction() == 0) {
                     tomFPool.play(tomFTrack, 1, 1, 2, 0, 1);
                     tomF.startAnimation(bounce);
                 }
@@ -251,7 +311,7 @@ public class DrumActivity extends BaseActivity {
         crash16.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction()==0) {
+                if (event.getAction() == 0) {
                     crash16Pool.play(crash16Track, 1, 1, 1, 0, 1);
                     crash16.startAnimation(bounce);
                 }
@@ -269,7 +329,7 @@ public class DrumActivity extends BaseActivity {
         crash18.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction()==0) {
+                if (event.getAction() == 0) {
                     crash18Pool.play(crash18Track, 1, 1, 2, 0, 1);
                     crash18.startAnimation(bounce);
                 }
@@ -287,7 +347,7 @@ public class DrumActivity extends BaseActivity {
         ride.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction()==0) {
+                if (event.getAction() == 0) {
                     ridePool.play(rideTrack, 1, 1, 2, 0, 1);
                     ride.startAnimation(bounce);
                 }
@@ -297,8 +357,10 @@ public class DrumActivity extends BaseActivity {
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer.stop();
-                mediaPlayer.release();
+                if (mediaPlayer.isPlaying()) {
+                    mediaPlayer.stop();
+                    mediaPlayer.release();
+                }
                 Intent intent = new Intent(getContext(), DrumSetting.class);
                 startActivity(intent);
                 finish();
@@ -310,46 +372,110 @@ public class DrumActivity extends BaseActivity {
                 isPlay = backTrack(isPlay);
             }
         });
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+
+        rdoBtn1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCompletion(MediaPlayer mp) {
-                mediaPlayer.stop();
-                play.setSelected(false);
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        rdoBtn1.setTextColor(getResources().getColor(R.color.color_black, null));
+                    } else {
+                        rdoBtn1.setTextColor(getResources().getColor(R.color.color_black));
+                    }
+                    SNARE_WHAT = Constants.SNARE;
+                } else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        rdoBtn1.setTextColor(getResources().getColor(R.color.color_white, null));
+                    } else {
+                        rdoBtn1.setTextColor(getResources().getColor(R.color.color_white));
+                    }
+                }
             }
         });
+
+        rdoBtn2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        rdoBtn2.setTextColor(getResources().getColor(R.color.color_black, null));
+                    } else {
+                        rdoBtn2.setTextColor(getResources().getColor(R.color.color_black));
+                    }
+                    SNARE_WHAT = Constants.RIMSHOT;
+                } else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        rdoBtn2.setTextColor(getResources().getColor(R.color.color_white, null));
+                    } else {
+                        rdoBtn2.setTextColor(getResources().getColor(R.color.color_white));
+                    }
+                }
+            }
+        });
+
+        rdoBtn3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        rdoBtn3.setTextColor(getResources().getColor(R.color.color_black, null));
+                    } else {
+                        rdoBtn3.setTextColor(getResources().getColor(R.color.color_black));
+                    }
+                    SNARE_WHAT = Constants.BRUSH;
+                } else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        rdoBtn3.setTextColor(getResources().getColor(R.color.color_white, null));
+                    } else {
+                        rdoBtn3.setTextColor(getResources().getColor(R.color.color_white));
+                    }
+                }
+            }
+        });
+
     }
 
-    public boolean backTrack(boolean isPlay){
-        if(isPlay){
+    public boolean backTrack(boolean isPlay) {
+        if (isPlay) {
             mediaPlayer.stop();
             play.setSelected(false);
             isPlay = false;
-        }else{
-            if(Constants.DRUM_SOUND_TRACK == 1){
+        } else {
+            if (Constants.DRUM_SOUND_TRACK == 1) {
                 mediaPlayer = MediaPlayer.create(getContext(), R.raw.funk1);
-            }else if(Constants.DRUM_SOUND_TRACK == 2){
+            } else if (Constants.DRUM_SOUND_TRACK == 2) {
                 mediaPlayer = MediaPlayer.create(getContext(), R.raw.jazz1);
-            }else if(Constants.DRUM_SOUND_TRACK == 3){
+            } else if (Constants.DRUM_SOUND_TRACK == 3) {
                 mediaPlayer = MediaPlayer.create(getContext(), R.raw.rock1);
-            }else if(Constants.DRUM_SOUND_TRACK == 4){
+            } else if (Constants.DRUM_SOUND_TRACK == 4) {
                 mediaPlayer = MediaPlayer.create(getContext(), R.raw.slow_rock1);
-            }else if(Constants.DRUM_SOUND_TRACK == 5){
+            } else if (Constants.DRUM_SOUND_TRACK == 5) {
                 mediaPlayer = MediaPlayer.create(getContext(), R.raw.bossa1);
-            }else if(Constants.DRUM_SOUND_TRACK == 6){
+            } else if (Constants.DRUM_SOUND_TRACK == 6) {
                 mediaPlayer = MediaPlayer.create(getContext(), R.raw.bossa2);
-            }else{
+            } else { //intentionally do nothing
+            }mediaPlayer.start();
 
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        mp.stop();
+                        play.setSelected(false);
+                    }
+                });
+
+                play.setSelected(true);
+                isPlay = true;
             }
-            mediaPlayer.start();
-            play.setSelected(true);
-            isPlay = true;
+            return isPlay;
         }
-        return isPlay;
-    }
 
     public void goBack() {
-        mediaPlayer.stop();
-        mediaPlayer.release();
+        if (mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+        }
         Intent intent = new Intent(getContext(), GateActivity.class);
         startActivity(intent);
         finish();
@@ -426,6 +552,9 @@ public class DrumActivity extends BaseActivity {
             case Constants.HIHAT:
                 hihat.performClick();
                 break;
+            case Constants.HIHAT_OPEN:
+                hihat_open.performClick();
+                break;
             case Constants.SMALL_TOM:
                 tomS.performClick();
                 break;
@@ -446,6 +575,10 @@ public class DrumActivity extends BaseActivity {
                 break;
             case Constants.RIMSHOT:
                 rimShotPool.play(rimShotTrack, 1, 1, 2, 0, 1);
+                snare.startAnimation(bounce);
+                break;
+            case Constants.BRUSH:
+                brushPool.play(brushTrack, 1, 1, 2, 0, 1);
                 snare.startAnimation(bounce);
                 break;
         }

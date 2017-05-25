@@ -79,6 +79,7 @@ public class TestActivity extends BaseActivity {
 
     public void initView() {
 
+        /** Sound Effect Initialize*/
         startHornPool = build(1, AudioManager.STREAM_MUSIC, 0);
         startHorn = startHornPool.load(getContext(), R.raw.horn, 1);
         beepPool = build(1, AudioManager.STREAM_MUSIC, 0);
@@ -86,8 +87,11 @@ public class TestActivity extends BaseActivity {
         beepPingPool = build(1, AudioManager.STREAM_MUSIC, 0);
         beepPing = beepPingPool.load(getContext(), R.raw.bleep, 1);
 
+        /**Animation Effect Initialize*/
         bounce = AnimationUtils.loadAnimation(getContext(), R.anim.bounce);
         show = AnimationUtils.loadAnimation(getContext(), R.anim.show_feed);
+
+        /** View Initialize*/
         TextView scoreTitle = (TextView) findViewById(R.id.scoreTitle);
         yeah = (TextView) findViewById(R.id.yeah);
         TextView scoreBy25 = (TextView) findViewById(R.id.scoreBy25);
@@ -103,9 +107,19 @@ public class TestActivity extends BaseActivity {
         TextView btn5Text = (TextView) findViewById(R.id.btn5Text);
         setFontToViewBold(textColor, btn5Text, scoreBy25, score, scoreTitle, number, numberTitle, yeah);
 
+        /** Start After 1000ms*/
         mHandler.sendEmptyMessageDelayed(0, 1000);
     }
 
+    /**SoundPool build
+     * @SoundPool - Deprecated after Lollipop
+     *
+     * @param para1 Max Stream
+     * @param para2 Stream type
+     * @param para3 Source quality
+     *
+     * @return SoundPool
+     * */
     public SoundPool build(int para1, int para2, int para3) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             return new SoundPool.Builder()
@@ -115,6 +129,10 @@ public class TestActivity extends BaseActivity {
         }
     }
 
+    /**
+     * Initialize buttons, if text equals button id, play beepPing & show feed, increase numberRight
+     *
+     * */
     public void initListener() {
 
         btn1.setOnClickListener(new OnSingleClickListener() {

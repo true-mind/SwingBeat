@@ -2,16 +2,21 @@ package com.truemind.swingbeat.service;
 
 import android.app.Service;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.truemind.swingbeat.R;
+
+import static android.media.AudioManager.STREAM_MUSIC;
 
 public class MpPlayer extends Service {
     MediaPlayer mp;
     public MpPlayer() {
+
     }
 
     @Override
