@@ -805,7 +805,6 @@ public class RhythmActivity extends BaseActivity {
         timer2 = (ImageView) findViewById(R.id.timer2);
         timer3 = (ImageView) findViewById(R.id.timer3);
 
-
         setFontToViewBold(tv_combo, tv_quit, tv_current, tv, tv1, tv2, tv3);
     }
 

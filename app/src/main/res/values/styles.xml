@@ -209,4 +209,35 @@
         <item name="android:textColor">#000</item>
     </style>
 
+    <style name="titlePartition4dp">
+        <item name="android:layout_marginRight">40dp</item>
+        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">4dp</item>
+        <item name="android:background">#000</item>
+    </style>
+
+    <style name="blackCenterTextStyle">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#000</item>
+    </style>
+
+    <style name="frameTextOnStart">
+        <item name="android:layout_gravity">start|center_vertical</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">#000</item>
+    </style>
+
+    <style name="frameTextOnEnd">
+        <item name="android:layout_gravity">end|center_vertical</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
 </resources>

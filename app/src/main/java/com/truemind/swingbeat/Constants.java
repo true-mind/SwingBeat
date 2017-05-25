@@ -42,4 +42,10 @@ public class Constants {
 
     public static int TIMER = 1000;
     public static int TIMER_SPINNER_POSITION = 2;
+
+
+    public static int RHYTHM_MAX_COMBO = 0;
+    public static int RHYTHM_PERFECT = 0;
+    public static int RHYTHM_GOOD = 0;
+    public static int RHYTHM_BAD = 0;
 }

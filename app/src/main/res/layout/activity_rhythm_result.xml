@@ -1,14 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rhythm_back">
+    android:background="@drawable/rhythm_back"
+    android:orientation="vertical">
 
-    <LinearLayout
-        style="@style/whiteBackLayoutFullMargin20">
+    <LinearLayout style="@style/whiteBackLayoutFullMargin20">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/game_over_en"
+                android:textColor="#000"
+                android:textSize="32sp" />
+
+            <View style="@style/titlePartition4dp" />
+
+        </LinearLayout>
 
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="60dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/combo"
+                        style="@style/blackCenterTextStyle"
+                        android:text="47"
+                        android:textSize="118sp" />
+
+                    <TextView
+                        android:id="@+id/comboTitle"
+                        style="@style/blackCenterTextStyle"
+                        android:text="Max Combo"
+                        android:textSize="32sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="154dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/perfectTitle"
+                            style="@style/frameTextOnStart"
+                            android:text="@string/result_perfect" />
+
+                        <TextView
+                            android:id="@+id/perfect"
+                            style="@style/frameTextOnEnd"
+                            android:text="63"
+                            android:textColor="@color/color_green" />
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/goodTitle"
+                            style="@style/frameTextOnStart"
+                            android:text="@string/result_good" />
+
+                        <TextView
+                            android:id="@+id/good"
+                            style="@style/frameTextOnEnd"
+                            android:text="22"
+                            android:textColor="@color/color_blue" />
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/badTitle"
+                            style="@style/frameTextOnStart"
+                            android:text="@string/result_bad" />
+
+                        <TextView
+                            android:id="@+id/bad"
+                            style="@style/frameTextOnEnd"
+                            android:text="16"
+                            android:textColor="@color/color_red" />
+
+                    </FrameLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
+                        android:background="#000" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/totalTitle"
+                            style="@style/frameTextOnStart"
+                            android:text="@string/total_right" />
+
+                        <TextView
+                            android:id="@+id/total"
+                            style="@style/frameTextOnEnd"
+                            android:text="85"
+                            android:textColor="#000" />
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </FrameLayout>
 
     </LinearLayout>
 
@@ -19,7 +157,7 @@
         <TextView
             android:id="@+id/btnText"
             style="@style/bottomBtnCommonText"
-            android:text="메인으로 돌아가기"/>
+            android:text="메인으로 돌아가기" />
 
     </LinearLayout>
 

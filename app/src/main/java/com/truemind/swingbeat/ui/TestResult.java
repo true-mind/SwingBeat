@@ -79,27 +79,22 @@ public class TestResult extends BaseActivity {
 
     @Override
     public void onkey1() {
-        goBack();
     }
 
     @Override
     public void onkey2() {
-        goBack();
     }
 
     @Override
     public void onkey3() {
-        goBack();
     }
 
     @Override
     public void onkey4() {
-        goBack();
     }
 
     @Override
     public void onkey5() {
-
         goBack();
     }
 

@@ -60,4 +60,9 @@
     <string name="manual">Key Map</string>
     <string name="KeyMap">Key1 : 방향키 위(↑)\nKey2 : 방향키 아래(↓)\nKey3 : 방향키 좌(←)\nKey4 : 방향키 우(→)
 \nKey5 : 엔터(Enter)\n\nExtension Mode (2 Swing Air)\n\nKey6 : 1\nKey7 : 2\nKey8 : 3\nKey9 : 4\nKey10 : 5</string>
+    <string name="result_perfect">Perfect</string>
+    <string name="result_good">Good</string>
+    <string name="result_bad">Bad</string>
+    <string name="total_right">총 맞춘 개수</string>
+    <string name="game_over_en">Game over!</string>
 </resources>
