@@ -1,6 +1,7 @@
 package com.truemind.swingbeat.ui;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.CountDownTimer;
@@ -8,6 +9,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -29,19 +32,31 @@ import java.util.TimerTask;
 
 public class RhythmActivity extends BaseActivity {
 
-    ImageView move1_1;
-    ImageView move1_2;
-    ImageView move1_3;
-    ImageView move2_1;
-    ImageView move2_2;
-    ImageView move2_3;
-    ImageView move3_1;
-    ImageView move3_2;
-    ImageView move3_3;
+    private ImageView move1_1;
+    private ImageView move1_2;
+    private ImageView move1_3;
+    private ImageView move2_1;
+    private ImageView move2_2;
+    private ImageView move2_3;
+    private ImageView move3_1;
+    private ImageView move3_2;
+    private ImageView move3_3;
 
-    LinearLayout button1;
-    LinearLayout button2;
-    LinearLayout button3;
+    private ImageView timer1;
+    private ImageView timer2;
+    private ImageView timer3;
+
+    private LinearLayout button1;
+    private LinearLayout button2;
+    private LinearLayout button3;
+
+    private TextView tv;
+    private TextView tv1;
+    private TextView tv2;
+    private TextView tv3;
+    private TextView tv_combo;
+    private TextView tv_current;
+    private TextView tv_quit;
 
     private Handler media_handler;
     private Handler end_handler;
@@ -54,17 +69,6 @@ public class RhythmActivity extends BaseActivity {
 
     private ArrayList<ImageView> moveList;
 
-    private TextView tv;
-    private TextView tv1;
-    private TextView tv2;
-    private TextView tv3;
-    private TextView tv_combo;
-    private TextView tv_current;
-    private TextView tv_quit;
-    private ImageView timer1;
-    private ImageView timer2;
-    private ImageView timer3;
-
     private int combo;
     private int countdown = 3;
     private long sec;
@@ -73,6 +77,13 @@ public class RhythmActivity extends BaseActivity {
     private int mIndex1;
     private int mIndex2;
     private int mIndex3;
+
+    private int maxCombo;
+    private int perfect_count;
+    private int good_count;
+    private int bad_count;
+
+    private int lane_width;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +96,24 @@ public class RhythmActivity extends BaseActivity {
         initCountDown();
     }
 
+    private void goToScore(){
+        if(combo>maxCombo){
+            maxCombo = combo;
+        }
+        Intent intent = new Intent(RhythmActivity.this, RhythmResult.class);
+        intent.putExtra("perfect", perfect_count);
+        intent.putExtra("good", good_count);
+        intent.putExtra("bad", bad_count);
+        intent.putExtra("combo", maxCombo);
+        startActivity(intent);
+    }
+
     private void initCountDown() {
+        maxCombo=0;
+        perfect_count=0;
+        good_count=0;
+        bad_count=0;
+
         new CountDownTimer(3050, 1000){
             @Override
             public void onTick(long millisUntilFinished) {
@@ -534,24 +562,27 @@ public class RhythmActivity extends BaseActivity {
                     if(isPerfect[i]){
                         perfect = i;
                     }
-                    if(isGood[i]){
+                    else if(isGood[i]){
                         good = i;
                     }
-                    if(isOnView[i]){
+                    else if(isOnView[i]){
                         bad = i;
                     }
                 }
                 if(perfect!=-1){
+                    perfect_count++;
                     tv_current.setText("Perfect");
                     end(moveList.get(perfect), perfect);
                     upCombo();
                 }
                 else if(good!=-1){
+                    good_count++;
                     tv_current.setText("Good");
                     end(moveList.get(good), good);
                     upCombo();
                 }
                 else if(bad!=-1){
+                    bad_count++;
                     tv_current.setText("Bad");
                     end(moveList.get(bad), bad);
                     upCombo();
@@ -569,24 +600,27 @@ public class RhythmActivity extends BaseActivity {
                     if(isPerfect[i]){
                         perfect = i;
                     }
-                    if(isGood[i]){
+                    else if(isGood[i]){
                         good = i;
                     }
-                    if(isOnView[i]){
+                    else if(isOnView[i]){
                         bad = i;
                     }
                 }
                 if(perfect!=-1){
+                    perfect_count++;
                     tv_current.setText("Perfect");
                     end(moveList.get(perfect), perfect);
                     upCombo();
                 }
                 else if(good!=-1){
+                    good_count++;
                     tv_current.setText("Good");
                     end(moveList.get(good), good);
                     upCombo();
                 }
                 else if(bad!=-1){
+                    bad_count++;
                     tv_current.setText("Bad");
                     end(moveList.get(bad), bad);
                     upCombo();
@@ -604,24 +638,27 @@ public class RhythmActivity extends BaseActivity {
                     if(isPerfect[i]){
                         perfect = i;
                     }
-                    if(isGood[i]){
+                    else if(isGood[i]){
                         good = i;
                     }
-                    if(isOnView[i]){
+                    else if(isOnView[i]){
                         bad = i;
                     }
                 }
                 if(perfect!=-1){
+                    perfect_count++;
                     tv_current.setText("Perfect");
                     end(moveList.get(perfect), perfect);
                     upCombo();
                 }
                 else if(good!=-1){
+                    good_count++;
                     tv_current.setText("Good");
                     end(moveList.get(good), good);
                     upCombo();
                 }
                 else if(bad!=-1) {
+                    bad_count++;
                     tv_current.setText("Bad");
                     end(moveList.get(bad), bad);
                     upCombo();
@@ -741,7 +778,7 @@ public class RhythmActivity extends BaseActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             image.clearAnimation();
             image.setX(0);
-            image.animate().translationX(1500).setDuration(2000).setInterpolator(AnimationUtils.loadInterpolator(RhythmActivity.this, android.R.anim.linear_interpolator)).start();
+            image.animate().translationX(lane_width).setDuration(2000).setInterpolator(AnimationUtils.loadInterpolator(RhythmActivity.this, android.R.anim.linear_interpolator)).start();
         }
     }
 
@@ -754,6 +791,9 @@ public class RhythmActivity extends BaseActivity {
     }
 
     private void initCombo(){
+        if(maxCombo<combo){
+            maxCombo=combo;
+        }
         combo=0;
         tv_combo.setText(""+combo);
     }
@@ -805,6 +845,11 @@ public class RhythmActivity extends BaseActivity {
         timer2 = (ImageView) findViewById(R.id.timer2);
         timer3 = (ImageView) findViewById(R.id.timer3);
 
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+
+        lane_width = size.x * 516 / 640;
 
         setFontToViewBold(tv_combo, tv_quit, tv_current, tv, tv1, tv2, tv3);
     }
