@@ -5,7 +5,7 @@
     android:background="@drawable/test_back"
     android:orientation="vertical">
 
-    <LinearLayout style="@style/testWhiteBackLayoutFullMargin20">
+    <LinearLayout style="@style/whiteBackLayoutFullMargin20">
 
         <TextView
             android:id="@+id/title"
@@ -120,11 +120,11 @@
 
     <LinearLayout
         android:id="@+id/btnStart"
-        style="@style/testBtnCommonBase">
+        style="@style/bottomBtnCommonBase">
 
         <TextView
             android:id="@+id/btnText"
-            style="@style/testBtnCommonText"
+            style="@style/bottomBtnCommonText"
             android:text="@string/start_test" />
 
     </LinearLayout>

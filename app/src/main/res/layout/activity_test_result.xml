@@ -5,7 +5,7 @@
     android:background="@drawable/test_back"
     android:orientation="vertical">
 
-    <FrameLayout style="@style/testWhiteBackLayoutFullMargin20">
+    <FrameLayout style="@style/whiteBackLayoutFullMargin20">
 
         <TextView
             android:id="@+id/title"
@@ -104,11 +104,11 @@
 
     <LinearLayout
         android:id="@+id/btnBack"
-        style="@style/testBtnCommonBase">
+        style="@style/bottomBtnCommonBase">
 
         <TextView
             android:id="@+id/btnText"
-            style="@style/testBtnCommonText"
+            style="@style/bottomBtnCommonText"
             android:text="@string/goBack" />
 
     </LinearLayout>

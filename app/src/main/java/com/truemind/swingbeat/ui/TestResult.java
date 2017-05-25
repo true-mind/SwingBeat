@@ -52,9 +52,7 @@ public class TestResult extends BaseActivity {
     public void initListener() {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), TestIntro.class));
-                finish();
+            public void onClick(View v) {goBack();
             }
         });
     }
@@ -73,30 +71,36 @@ public class TestResult extends BaseActivity {
 
     }
 
+    public void goBack(){
+        startActivity(new Intent(getContext(), TestIntro.class));
+        finish();
+    }
+
 
     @Override
     public void onkey1() {
-
+        goBack();
     }
 
     @Override
     public void onkey2() {
-
+        goBack();
     }
 
     @Override
     public void onkey3() {
-
+        goBack();
     }
 
     @Override
     public void onkey4() {
-
+        goBack();
     }
 
     @Override
     public void onkey5() {
 
+        goBack();
     }
 
     @Override
@@ -126,6 +130,6 @@ public class TestResult extends BaseActivity {
 
     @Override
     public void onKeyBack() {
-
+        goBack();
     }
 }

@@ -5,7 +5,7 @@
     android:background="@drawable/test_back"
     android:orientation="vertical">
 
-    <FrameLayout style="@style/testWhiteBackLayoutFullMargin20">
+    <FrameLayout style="@style/whiteBackLayoutFullMargin20">
 
         <LinearLayout
             android:layout_width="wrap_content"

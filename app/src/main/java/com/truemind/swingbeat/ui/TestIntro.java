@@ -41,9 +41,15 @@ public class TestIntro extends BaseActivity {
     }
 
     public void initView() {
-        timeData.add("600");  timeData.add("800"); timeData.add("1000");
-        timeData.add("1200"); timeData.add("1400"); timeData.add("1600");
-        timeData.add("1800"); timeData.add("2000"); timeData.add("2500");
+        timeData.add("600");
+        timeData.add("800");
+        timeData.add("1000");
+        timeData.add("1200");
+        timeData.add("1400");
+        timeData.add("1600");
+        timeData.add("1800");
+        timeData.add("2000");
+        timeData.add("2500");
         timeData.add("3000");
         adapterSpinner = new AdapterSpinner(getContext(), timeData);
 
@@ -57,7 +63,7 @@ public class TestIntro extends BaseActivity {
         TextView text7 = (TextView) findViewById(R.id.text7);
         TextView timer = (TextView) findViewById(R.id.timer);
         TextView btnText = (TextView) findViewById(R.id.btnText);
-        timerSet = (Spinner)findViewById(R.id.timerSet);
+        timerSet = (Spinner) findViewById(R.id.timerSet);
         timerSet.setAdapter(adapterSpinner);
         timerSet.setSelection(Constants.TIMER_SPINNER_POSITION);
 
@@ -98,17 +104,17 @@ public class TestIntro extends BaseActivity {
 
     @Override
     public void onkey1() {
-
+        goBack();
     }
 
     @Override
     public void onkey2() {
-
+        goBack();
     }
 
     @Override
     public void onkey3() {
-
+        timerSet.performClick();
     }
 
     @Override
