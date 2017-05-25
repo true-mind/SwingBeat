@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#fff"
     android:orientation="horizontal"
-    tools:context="com.truemind.swingbeat.ui.RhythmActivity"
+    tools:context="com.truemind.swingbeat.ui.rhythm.RhythmActivity"
     android:id="@+id/parentLayout">
     <LinearLayout
         android:layout_width="match_parent"

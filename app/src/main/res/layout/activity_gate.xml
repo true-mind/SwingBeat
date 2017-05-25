@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <ImageView
+        android:id="@+id/gateImage"
         android:layout_width="match_parent"
         android:layout_height="132dp"
         android:background="@null"

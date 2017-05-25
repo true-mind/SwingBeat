@@ -1,4 +1,4 @@
-package com.truemind.swingbeat.ui;
+package com.truemind.swingbeat.ui.rhythm;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.truemind.swingbeat.BaseActivity;
 import com.truemind.swingbeat.Constants;
 import com.truemind.swingbeat.R;
+import com.truemind.swingbeat.ui.GateActivity;
 
 /**
  * Created by 현석 on 2017-05-25.

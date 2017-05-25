@@ -3,15 +3,20 @@ package com.truemind.swingbeat.ui;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.truemind.swingbeat.BaseActivity;
 import com.truemind.swingbeat.Constants;
 import com.truemind.swingbeat.R;
+import com.truemind.swingbeat.ui.drum.DrumActivity;
+import com.truemind.swingbeat.ui.rhythm.RhythmActivity;
+import com.truemind.swingbeat.ui.test.TestIntro;
 import com.truemind.swingbeat.util.CommonDialog;
 
 public class GateActivity extends BaseActivity {
@@ -22,6 +27,9 @@ public class GateActivity extends BaseActivity {
     private ImageButton btnTest;
     private ImageButton btnBT;
     private Button btnManual;
+    private ImageView gateImage;
+
+    private int i = 0;
 
     /**for onBackPress*/
     public final long FINISH_INTERVAL_TIME = 2000;
@@ -54,6 +62,7 @@ public class GateActivity extends BaseActivity {
         btnTest = (ImageButton)findViewById(R.id.btnTest);
         btnBT = (ImageButton)findViewById(R.id.btnBT);
         btnManual = (Button)findViewById(R.id.btnManual);
+        gateImage = (ImageView)findViewById(R.id.gateImage);
 
         setFontToViewBold(txtDrumTitle, txtDrum1, txtDrum2, txtGameTitle, txtGame1,
                 txtGame2, txtTestTitle, txtTestTitle, txtTest1, txtTest2, txtGoHomePage, btnManual);
@@ -105,6 +114,25 @@ public class GateActivity extends BaseActivity {
             public void onClick(View v) {
                 CommonDialog dialog = new CommonDialog();
                 dialog.showDialog(getContext(), "Key Map", getResources().getString(R.string.KeyMap), true, "확인 (Enter)");
+            }
+        });
+
+        gateImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i++;
+                if(i>4){
+                    /** Easter Egg!*/
+                    Toast.makeText(getContext(), "Hi Sally!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getContext(), Easter.class);
+                    startActivity(intent);
+                }
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        i = 0;
+                    }
+                }, 500);
             }
         });
 

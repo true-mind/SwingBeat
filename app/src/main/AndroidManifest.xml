@@ -22,30 +22,32 @@
                 `
             </intent-filter>
         </activity>
-        <activity android:name=".ui.RhythmActivity"
+        <activity android:name=".ui.rhythm.RhythmActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".ui.RhythmResult"
+            android:name=".ui.rhythm.RhythmResult"
             android:screenOrientation="landscape" />
         <activity
             android:name=".ui.GateActivity"
             android:theme="@style/AppThemeGreenBar" />
         <activity
-            android:name=".ui.DrumActivity"
+            android:name=".ui.drum.DrumActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".ui.DrumSetting"
+            android:name=".ui.drum.DrumSetting"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".ui.TestIntro"
+            android:name=".ui.test.TestIntro"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".ui.TestActivity"
+            android:name=".ui.test.TestActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".ui.TestResult"
+            android:name=".ui.test.TestResult"
             android:screenOrientation="landscape" />
 
+        <activity android:name=".ui.Easter"
+            android:screenOrientation="portrait" />
         <service
             android:name=".service.MpPlayer"
             android:enabled="true"

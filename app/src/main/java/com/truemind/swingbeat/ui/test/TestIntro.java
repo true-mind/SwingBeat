@@ -1,11 +1,10 @@
-package com.truemind.swingbeat.ui;
+package com.truemind.swingbeat.ui.test;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -13,6 +12,7 @@ import android.widget.TextView;
 import com.truemind.swingbeat.BaseActivity;
 import com.truemind.swingbeat.Constants;
 import com.truemind.swingbeat.R;
+import com.truemind.swingbeat.ui.GateActivity;
 import com.truemind.swingbeat.util.AdapterSpinner;
 
 import java.util.ArrayList;

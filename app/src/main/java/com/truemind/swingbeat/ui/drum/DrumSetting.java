@@ -1,11 +1,10 @@
-package com.truemind.swingbeat.ui;
+package com.truemind.swingbeat.ui.drum;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 

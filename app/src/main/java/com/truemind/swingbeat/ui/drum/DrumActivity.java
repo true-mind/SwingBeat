@@ -1,4 +1,4 @@
-package com.truemind.swingbeat.ui;
+package com.truemind.swingbeat.ui.drum;
 
 import android.content.Intent;
 import android.media.AudioManager;
@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import com.truemind.swingbeat.BaseActivity;
 import com.truemind.swingbeat.Constants;
 import com.truemind.swingbeat.R;
+import com.truemind.swingbeat.ui.GateActivity;
 
 /**
  * Created by 현석 on 2017-05-19.

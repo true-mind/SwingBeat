@@ -1,4 +1,4 @@
-package com.truemind.swingbeat.ui;
+package com.truemind.swingbeat.ui.test;
 
 import android.content.Intent;
 import android.media.AudioManager;
@@ -6,7 +6,6 @@ import android.media.SoundPool;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.HandlerThread;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -23,8 +22,6 @@ import com.truemind.swingbeat.R;
 import com.truemind.swingbeat.util.OnSingleClickListener;
 
 import java.util.Random;
-
-import static android.R.attr.value;
 
 /**
  * Created by 현석 on 2017-05-24.

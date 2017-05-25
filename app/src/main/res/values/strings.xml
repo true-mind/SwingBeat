@@ -65,4 +65,5 @@
     <string name="result_bad">Bad</string>
     <string name="total_right">총 맞춘 개수</string>
     <string name="game_over_en">Game over!</string>
+    <string name="easter_foot">Created by 솔직헌심정 - TrueMind</string>
 </resources>
