@@ -1,6 +1,8 @@
 package com.truemind.swingbeat.ui;
 
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -60,6 +62,14 @@ public class TestActivity extends BaseActivity {
     Animation bounce;
     Animation show;
 
+    SoundPool startHornPool;
+    SoundPool beepPool;
+    SoundPool beepPingPool;
+
+    int startHorn;
+    int beep;
+    int beepPing;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +81,14 @@ public class TestActivity extends BaseActivity {
     }
 
     public void initView() {
+
+        startHornPool = build(1, AudioManager.STREAM_MUSIC, 0);
+        startHorn = startHornPool.load(getContext(), R.raw.horn, 1);
+        beepPool = build(1, AudioManager.STREAM_MUSIC, 0);
+        beep = beepPool.load(getContext(), R.raw.beep, 1);
+        beepPingPool = build(1, AudioManager.STREAM_MUSIC, 0);
+        beepPing = beepPingPool.load(getContext(), R.raw.bleep, 1);
+
         bounce = AnimationUtils.loadAnimation(getContext(), R.anim.bounce);
         show = AnimationUtils.loadAnimation(getContext(), R.anim.show_feed);
         TextView scoreTitle = (TextView) findViewById(R.id.scoreTitle);
@@ -91,6 +109,15 @@ public class TestActivity extends BaseActivity {
         mHandler.sendEmptyMessageDelayed(0, 1000);
     }
 
+    public SoundPool build(int para1, int para2, int para3) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return new SoundPool.Builder()
+                    .build();
+        } else {
+            return new SoundPool(para1, para2, para3);
+        }
+    }
+
     public void initListener() {
 
         btn1.setOnClickListener(new OnSingleClickListener() {
@@ -101,6 +128,9 @@ public class TestActivity extends BaseActivity {
                 if (text == COLOR_BLUE) {
                     numberRight++;
                     showFeed();
+                    beepPingPool.play(beepPing, 1, 1, 1, 0, 1);
+                }else{
+                    beepPool.play(beepPing, 1, 1, 1, 0, 1);
                 }
             }
         });
@@ -113,6 +143,9 @@ public class TestActivity extends BaseActivity {
                 if (text == COLOR_RED) {
                     numberRight++;
                     showFeed();
+                    beepPingPool.play(beepPing, 1, 1, 1, 0, 1);
+                }else{
+                    beepPool.play(beepPing, 1, 1, 1, 0, 1);
                 }
             }
         });
@@ -125,6 +158,9 @@ public class TestActivity extends BaseActivity {
                 if (text == COLOR_GREEN) {
                     numberRight++;
                     showFeed();
+                    beepPingPool.play(beepPing, 1, 1, 1, 0, 1);
+                }else{
+                    beepPool.play(beepPing, 1, 1, 1, 0, 1);
                 }
             }
         });
@@ -137,6 +173,9 @@ public class TestActivity extends BaseActivity {
                 if (text == COLOR_YELLOW) {
                     numberRight++;
                     showFeed();
+                    beepPingPool.play(beepPing, 1, 1, 1, 0, 1);
+                }else{
+                    beepPool.play(beepPing, 1, 1, 1, 0, 1);
                 }
             }
         });
@@ -149,7 +188,6 @@ public class TestActivity extends BaseActivity {
             }
         });
 
-
     }
 
     Handler mHandler = new Handler() {
@@ -160,12 +198,16 @@ public class TestActivity extends BaseActivity {
             score.setText(Integer.toString(numberRight));
             number.setText(Integer.toString(currentPos));
 
+            if(currentPos==1){
+                startHornPool.play(startHorn, 1, 1, 1, 0, 1);
+            }
+
             if (currentPos < MAX_POSITION) {
                 mHandler.sendEmptyMessageDelayed(0, TIMER_INTERVAL);
             } else {
                 mHandler.removeCallbacksAndMessages(null);
                 Intent intent = new Intent(getContext(), TestResult.class);
-                intent.putExtra("score", Integer.parseInt(score.getText().toString()));
+                intent.putExtra("score", numberRight);
                 startActivity(intent);
                 finish();
             }
@@ -215,7 +257,6 @@ public class TestActivity extends BaseActivity {
                     textColor.setTextColor(getResources().getColor(R.color.color_yellow));
                 }
                 break;
-
         }
 
         switch (text) {

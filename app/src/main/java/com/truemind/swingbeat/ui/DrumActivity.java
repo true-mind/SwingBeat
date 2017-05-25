@@ -197,7 +197,7 @@ public class DrumActivity extends BaseActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction()==0) {
-                    tomSPool.play(tomSTrack, 1, 1, 0, 0, 1);
+                    tomSPool.play(tomSTrack, 1, 1, 2, 0, 1);
                     tomS.startAnimation(bounce);
                 }
                 return true;
@@ -207,7 +207,7 @@ public class DrumActivity extends BaseActivity {
         tomM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tomMPool.play(tomMTrack, 1, 1, 0, 0, 1);
+                tomMPool.play(tomMTrack, 1, 1, 2, 0, 1);
                 tomM.startAnimation(bounce);
             }
         });
@@ -215,7 +215,7 @@ public class DrumActivity extends BaseActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction()==0) {
-                    tomMPool.play(tomMTrack, 1, 1, 0, 0, 1);
+                    tomMPool.play(tomMTrack, 1, 1, 2, 0, 1);
                     tomM.startAnimation(bounce);
                 }
                 return true;
@@ -225,7 +225,7 @@ public class DrumActivity extends BaseActivity {
         tomF.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tomFPool.play(tomFTrack, 1, 1, 0, 0, 1);
+                tomFPool.play(tomFTrack, 1, 1, 2, 0, 1);
                 tomF.startAnimation(bounce);
             }
         });
@@ -233,7 +233,7 @@ public class DrumActivity extends BaseActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction()==0) {
-                    tomFPool.play(tomFTrack, 1, 1, 0, 0, 1);
+                    tomFPool.play(tomFTrack, 1, 1, 2, 0, 1);
                     tomF.startAnimation(bounce);
                 }
                 return true;
@@ -243,7 +243,7 @@ public class DrumActivity extends BaseActivity {
         crash16.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                crash16Pool.play(crash16Track, 1, 1, 0, 0, 1);
+                crash16Pool.play(crash16Track, 1, 1, 1, 0, 1);
                 crash16.startAnimation(bounce);
             }
         });
@@ -251,7 +251,7 @@ public class DrumActivity extends BaseActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction()==0) {
-                    crash16Pool.play(crash16Track, 1, 1, 0, 0, 1);
+                    crash16Pool.play(crash16Track, 1, 1, 1, 0, 1);
                     crash16.startAnimation(bounce);
                 }
                 return true;
@@ -279,7 +279,7 @@ public class DrumActivity extends BaseActivity {
         ride.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ridePool.play(rideTrack, 1, 1, 0, 0, 1);
+                ridePool.play(rideTrack, 1, 1, 2, 0, 1);
                 ride.startAnimation(bounce);
             }
         });
@@ -287,7 +287,7 @@ public class DrumActivity extends BaseActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction()==0) {
-                    ridePool.play(rideTrack, 1, 1, 0, 0, 1);
+                    ridePool.play(rideTrack, 1, 1, 2, 0, 1);
                     ride.startAnimation(bounce);
                 }
                 return true;
