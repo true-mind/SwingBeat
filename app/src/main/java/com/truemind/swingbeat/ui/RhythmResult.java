@@ -71,7 +71,7 @@ public class RhythmResult extends BaseActivity {
         perfect.setText(Integer.toString(Constants.RHYTHM_PERFECT));
         good.setText(Integer.toString(Constants.RHYTHM_GOOD));
         bad.setText(Integer.toString(Constants.RHYTHM_BAD));
-        int totalScore = Constants.RHYTHM_PERFECT + Constants.RHYTHM_GOOD;
+        int totalScore = Constants.RHYTHM_PERFECT + Constants.RHYTHM_GOOD + Constants.RHYTHM_BAD;
         total.setText(Integer.toString(totalScore));
 
     }

@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.truemind.swingbeat.BaseActivity;
+import com.truemind.swingbeat.Constants;
 import com.truemind.swingbeat.R;
 import com.truemind.swingbeat.service.MpPlayer;
 
@@ -96,16 +97,28 @@ public class RhythmActivity extends BaseActivity {
         initCountDown();
     }
 
-    private void goToScore(){
-        if(combo>maxCombo){
-            maxCombo = combo;
-        }
-        Intent intent = new Intent(RhythmActivity.this, RhythmResult.class);
-        intent.putExtra("perfect", perfect_count);
-        intent.putExtra("good", good_count);
-        intent.putExtra("bad", bad_count);
-        intent.putExtra("combo", maxCombo);
-        startActivity(intent);
+    private void goToScore(long sec){
+        new Timer().schedule(new TimerTask(){
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(combo>maxCombo){
+                            maxCombo = combo;
+                        }
+                        Constants.RHYTHM_MAX_COMBO = maxCombo;
+                        Constants.RHYTHM_BAD = bad_count;
+                        Constants.RHYTHM_GOOD = good_count;
+                        Constants.RHYTHM_PERFECT = perfect_count;
+                        Intent serviceIntent = new Intent(RhythmActivity.this, MpPlayer.class);
+                        stopService(serviceIntent);
+                        Intent intent = new Intent(RhythmActivity.this, RhythmResult.class);
+                        startActivity(intent);
+                    }
+                });
+            }
+        }, sec);
     }
 
     private void initCountDown() {
@@ -183,7 +196,7 @@ public class RhythmActivity extends BaseActivity {
 
     private void initMoves(){
         media_handler.sendEmptyMessageDelayed(0, 1900);
-        sec = 1300;
+        sec = 1500;
 
         controlMoves(1, sec);
         sec+=500;
@@ -543,6 +556,9 @@ public class RhythmActivity extends BaseActivity {
 
         controlMoves(1, sec);
         controlMoves(3, sec);
+
+        sec+=10000;
+        goToScore(sec);
     }
 
 
@@ -763,7 +779,7 @@ public class RhythmActivity extends BaseActivity {
                         int var = index*3 + sub_index;
                         end_handler.sendEmptyMessageDelayed(var, 2100);
                         good_handler.sendEmptyMessageDelayed(var, 1200);
-                        perfect_handler.sendEmptyMessageDelayed(var, 1700);
+                        perfect_handler.sendEmptyMessageDelayed(var, 1800);
                     }
                 });
             }
@@ -906,7 +922,15 @@ public class RhythmActivity extends BaseActivity {
 
     @Override
     public void onKeyBack() {
-        onBackPressed();
+        goBack();
+    }
+
+    public void goBack(){
+        Intent serviceIntent = new Intent(RhythmActivity.this, MpPlayer.class);
+        stopService(serviceIntent);
+        Intent intent = new Intent(getContext(), GateActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
