@@ -20,20 +20,12 @@ public class MpPlayer extends Service {
     }
 
     @Override
-    public void onCreate() {
-        super.onCreate();
+    public int onStartCommand(Intent intent, int flags, int startId) {
         mp = MediaPlayer.create(this, R.raw.wikiloops_jam_my_momma_told_me_fade_out);
         mp.start();
-    }
+        return super.onStartCommand(intent, START_NOT_STICKY, startId);
 
-    /*
-    @Override
-    public void onStart(Intent intent, int startId) {
-        super.onStart(intent, startId);
-        mp = MediaPlayer.create(this, R.raw.wikiloops_jam_my_momma_told_me_fade_out);
-        mp.start();
     }
-    */
 
     @Override
     public void onDestroy() {
