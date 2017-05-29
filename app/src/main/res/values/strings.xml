@@ -69,4 +69,6 @@
     <string name="s">S</string>
     <string name="r">R</string>
     <string name="b">B</string>
+    <string name="loading_drum">드럼을 불러오는 중입니다.</string>
+    <string name="please_wait">잠시만 기다려 주세요...</string>
 </resources>

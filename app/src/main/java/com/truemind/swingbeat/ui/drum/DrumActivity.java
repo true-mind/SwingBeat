@@ -6,7 +6,10 @@ import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -19,6 +22,7 @@ import com.truemind.swingbeat.BaseActivity;
 import com.truemind.swingbeat.Constants;
 import com.truemind.swingbeat.R;
 import com.truemind.swingbeat.ui.GateActivity;
+import com.truemind.swingbeat.util.ProgressDialog;
 
 /**
  * Created by 현석 on 2017-05-19.
@@ -75,15 +79,49 @@ public class DrumActivity extends BaseActivity {
     MediaPlayer mediaPlayer;
     Animation bounce;
 
+    ProgressDialog progressDialog;
     private boolean isPlay = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drum);
 
-        initView();
-        initListener();
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.show();
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (GetMyDeviceInch() > 6.8) {
+                    setContentView(R.layout.activity_drum_big);
+                } else {
+                    setContentView(R.layout.activity_drum);
+                }
+                threadhandler.sendEmptyMessage(0);
+            }
+        });
+    }
+
+    private Handler threadhandler = new Handler() {
+        public void handleMessage(Message msg) {
+            initView();
+            initListener();
+            progressDialog.dismiss();
+        }
+    };
+
+
+    public double GetMyDeviceInch() {
+        DisplayMetrics matrix = new DisplayMetrics();
+        getWindow().getWindowManager().getDefaultDisplay().getMetrics(matrix);
+
+        int w = matrix.widthPixels;
+        int h = matrix.heightPixels;
+        float xdpi = matrix.xdpi;
+        float ydpi = matrix.ydpi;
+        float x_inch = w / xdpi;
+        float y_inch = h / ydpi;
+        return Math.sqrt(x_inch * x_inch + y_inch * y_inch);
     }
 
 
@@ -455,21 +493,22 @@ public class DrumActivity extends BaseActivity {
             } else if (Constants.DRUM_SOUND_TRACK == 6) {
                 mediaPlayer = MediaPlayer.create(getContext(), R.raw.bossa2);
             } else { //intentionally do nothing
-            }mediaPlayer.start();
-
-                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
-                        mp.stop();
-                        play.setSelected(false);
-                    }
-                });
-
-                play.setSelected(true);
-                isPlay = true;
             }
-            return isPlay;
+            mediaPlayer.start();
+
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mp.stop();
+                    play.setSelected(false);
+                }
+            });
+
+            play.setSelected(true);
+            isPlay = true;
         }
+        return isPlay;
+    }
 
     public void goBack() {
         if (mediaPlayer.isPlaying()) {
