@@ -17,9 +17,7 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
-                `
             </intent-filter>
         </activity>
         <activity android:name=".ui.rhythm.RhythmActivity"
@@ -51,7 +49,6 @@
         <service
             android:stopWithTask="true"
             android:name=".service.MpPlayer"
-            android:stopWithTask="true"
             android:enabled="true"
             android:exported="true"/>
     </application>
