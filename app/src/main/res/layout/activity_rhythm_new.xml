@@ -48,7 +48,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
-                android:text="@string/perfect"
                 android:textColor="#000"
                 android:textSize="44sp" />
 
@@ -124,29 +123,29 @@
             android:background="@drawable/rhythm_lane1">
 
             <ImageView
-                android:visibility="gone"
                 android:id="@+id/move1_1"
                 android:layout_width="10dp"
                 android:layout_height="54dp"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/bar_down" />
+                android:background="@drawable/bar_down"
+                android:visibility="gone" />
 
             <ImageView
-                android:visibility="gone"
                 android:id="@+id/move1_2"
                 android:layout_width="10dp"
                 android:layout_height="54dp"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/bar_down" />
+                android:background="@drawable/bar_down"
+                android:visibility="gone" />
 
             <ImageView
-                android:visibility="gone"
                 android:id="@+id/move1_3"
                 android:layout_width="10dp"
                 android:layout_height="54dp"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/bar_down" />
-            
+                android:background="@drawable/bar_down"
+                android:visibility="gone" />
+
         </FrameLayout>
 
         <View
