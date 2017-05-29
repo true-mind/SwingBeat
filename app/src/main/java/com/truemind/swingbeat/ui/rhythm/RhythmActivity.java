@@ -652,7 +652,7 @@ public class RhythmActivity extends BaseActivity {
                 }
                 if(perfect!=-1){
                     perfect_count++;
-                    tv_current.setText("Perfect");
+                    tv_current.setText(getResources().getString(R.string.result_perfect));
                     Log.d("MyTag", "in button1 -- perfect:"+perfect);
                     Log.d("MyTag", "in button1 -- perfect:["+isPerfect[0]+"]["+isPerfect[1]+"]["+isPerfect[2]+"]["+isPerfect[3]+"]["+isPerfect[4]+"]["+isPerfect[5]+"]["+isPerfect[6]+"]["+isPerfect[7]+"]["+isPerfect[8]+"]");
                     Log.d("MyTag", "in button1 -- isOnView:["+isOnView[0]+"]["+isOnView[1]+"]["+isOnView[2]+"]["+isOnView[3]+"]["+isOnView[4]+"]["+isOnView[5]+"]["+isOnView[6]+"]["+isOnView[7]+"]["+isOnView[8]+"]");
@@ -662,7 +662,7 @@ public class RhythmActivity extends BaseActivity {
                 }
                 else if(good!=-1){
                     good_count++;
-                    tv_current.setText("Good");
+                    tv_current.setText(getResources().getString(R.string.result_good));
                     end(moveList.get(good), good);
                     Log.d("MyTag", "in button1 -- good:"+good);
                     Log.d("MyTag", "in button1 -- isOnView:["+isOnView[0]+"]["+isOnView[1]+"]["+isOnView[2]+"]["+isOnView[3]+"]["+isOnView[4]+"]["+isOnView[5]+"]["+isOnView[6]+"]["+isOnView[7]+"]["+isOnView[8]+"]");
@@ -671,7 +671,7 @@ public class RhythmActivity extends BaseActivity {
                 }
                 else if(bad!=-1){
                     bad_count++;
-                    tv_current.setText("Bad");
+                    tv_current.setText(getResources().getString(R.string.result_bad));
                     end(moveList.get(bad), bad);
                     Log.d("MyTag", "in button1 -- bad:"+bad);
                     Log.d("MyTag", "in button1 -- isOnView:["+isOnView[0]+"]["+isOnView[1]+"]["+isOnView[2]+"]["+isOnView[3]+"]["+isOnView[4]+"]["+isOnView[5]+"]["+isOnView[6]+"]["+isOnView[7]+"]["+isOnView[8]+"]");
@@ -714,19 +714,19 @@ public class RhythmActivity extends BaseActivity {
                     Log.d("MyTag", "in button2 -- perfect:["+isPerfect[0]+"]["+isPerfect[1]+"]["+isPerfect[2]+"]["+isPerfect[3]+"]["+isPerfect[4]+"]["+isPerfect[5]+"]["+isPerfect[6]+"]["+isPerfect[7]+"]["+isPerfect[8]+"]");
                     Log.d("MyTag", "in button2 -- isOnView:["+isOnView[0]+"]["+isOnView[1]+"]["+isOnView[2]+"]["+isOnView[3]+"]["+isOnView[4]+"]["+isOnView[5]+"]["+isOnView[6]+"]["+isOnView[7]+"]["+isOnView[8]+"]");
 
-                    tv_current.setText("Perfect");
+                    tv_current.setText(getResources().getString(R.string.result_perfect));
                     end(moveList.get(perfect), perfect);
                     upCombo();
                 }
                 else if(good!=-1){
                     good_count++;
-                    tv_current.setText("Good");
+                    tv_current.setText(getResources().getString(R.string.result_good));
                     end(moveList.get(good), good);
                     upCombo();
                 }
                 else if(bad!=-1){
                     bad_count++;
-                    tv_current.setText("Bad");
+                    tv_current.setText(getResources().getString(R.string.result_bad));
                     end(moveList.get(bad), bad);
                     upCombo();
                 }
@@ -765,19 +765,19 @@ public class RhythmActivity extends BaseActivity {
                     Log.d("MyTag", "in button3 -- perfect:"+perfect);
                     Log.d("MyTag", "in button3 -- perfect:["+isPerfect[0]+"]["+isPerfect[1]+"]["+isPerfect[2]+"]["+isPerfect[3]+"]["+isPerfect[4]+"]["+isPerfect[5]+"]["+isPerfect[6]+"]["+isPerfect[7]+"]["+isPerfect[8]+"]");
                     Log.d("MyTag", "in button3 -- isOnView:["+isOnView[0]+"]["+isOnView[1]+"]["+isOnView[2]+"]["+isOnView[3]+"]["+isOnView[4]+"]["+isOnView[5]+"]["+isOnView[6]+"]["+isOnView[7]+"]["+isOnView[8]+"]");
-                    tv_current.setText("Perfect");
+                    tv_current.setText(getResources().getString(R.string.result_perfect));
                     end(moveList.get(perfect), perfect);
                     upCombo();
                 }
                 else if(good!=-1){
                     good_count++;
-                    tv_current.setText("Good");
+                    tv_current.setText(getResources().getString(R.string.result_good));
                     end(moveList.get(good), good);
                     upCombo();
                 }
                 else if(bad!=-1) {
                     bad_count++;
-                    tv_current.setText("Bad");
+                    tv_current.setText(getResources().getString(R.string.result_bad));
                     end(moveList.get(bad), bad);
                     upCombo();
                 }
