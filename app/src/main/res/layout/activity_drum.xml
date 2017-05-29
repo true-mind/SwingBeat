@@ -54,6 +54,14 @@
         android:background="@drawable/s_drum_tom_middle"/>
 
     <ImageButton
+        android:layout_marginTop="176dp"
+        android:layout_marginLeft="396dp"
+        android:id="@+id/tomFloor"
+        android:layout_width="144dp"
+        android:layout_height="148dp"
+        android:background="@drawable/s_drum_tom_floor"/>
+
+    <ImageButton
         android:layout_marginTop="56dp"
         android:layout_marginLeft="98dp"
         android:id="@+id/crash16"
@@ -235,13 +243,5 @@
         </RadioGroup>
 
     </LinearLayout>
-
-    <ImageButton
-        android:id="@+id/tomFloor"
-        android:layout_width="144dp"
-        android:layout_height="148dp"
-        android:layout_marginLeft="396dp"
-        android:layout_marginTop="176dp"
-        android:background="@drawable/s_drum_tom_floor" />
 
 </FrameLayout>

@@ -76,7 +76,7 @@ public class RhythmActivity extends BaseActivity {
     private int combo;
     private int countdown = 3;
     private long sec;
-    private int beat = 999;
+    private int beat = 1000;
 
     private int mIndex1;
     private int mIndex2;
@@ -133,14 +133,13 @@ public class RhythmActivity extends BaseActivity {
         sound_good_init = build(1, AudioManager.STREAM_MUSIC, 0);
 
         track_good = sound_good.load(getContext(), R.raw.applause, 1);
-        track_good_init = sound_good_init.load(getContext(), R.raw.applause_init, 1);
+        track_good_init = sound_good.load(getContext(), R.raw.applause_init, 1);
         track_bad = sound_bad.load(getContext(), R.raw.boos, 1);
         track_perfect = sound_perfect.load(getContext(), R.raw.burst, 1);
     }
 
     private void goToScore(long sec){
         goToNext = new Timer();
-
         goToNext.schedule(new TimerTask(){
             @Override
             public void run() {
@@ -154,12 +153,6 @@ public class RhythmActivity extends BaseActivity {
                         Constants.RHYTHM_BAD = bad_count;
                         Constants.RHYTHM_GOOD = good_count;
                         Constants.RHYTHM_PERFECT = perfect_count;
-
-                        sound_good_init.stop(track_good_init);
-                        sound_perfect.stop(track_perfect);
-                        sound_good.stop(track_good);
-                        sound_bad.stop(track_bad);
-
                         Intent serviceIntent = new Intent(RhythmActivity.this, MpPlayer.class);
                         stopService(serviceIntent);
                         Intent intent = new Intent(RhythmActivity.this, RhythmResult.class);
@@ -950,7 +943,6 @@ public class RhythmActivity extends BaseActivity {
             maxCombo=combo;
         }
         if(combo>30){
-            sound_good_init.stop(track_good_init);
             sound_perfect.stop(track_perfect);
             sound_good.stop(track_good);
             sound_bad.play(track_bad, 1, 1, 1, 0, 1);
@@ -964,13 +956,12 @@ public class RhythmActivity extends BaseActivity {
         combo++;
         tv_combo.setText(""+combo);
 
-        if(combo==30){
-            sound_good_init.play(track_good_init, 1, 1, 3, 0, 1);
+        if(combo/10 ==3){
+            sound_good_init.play(track_good_init, 1, 2, 2, 0, 1);
+        }else if(combo/10 >=3 && combo%8 == 0){
+            sound_good.play(track_good, 1, 2, 2, 0, 1);
         }
-        if(combo==40){
-            sound_good.play(track_good, 1, 1, 2, -1, 1);
-        }
-        if(combo>=70 && combo%10==0){
+        if(combo==70 || combo==80){
             sound_perfect.play(track_perfect, 1, 1, 2, 0, 1);
         }
     }
@@ -1085,6 +1076,9 @@ public class RhythmActivity extends BaseActivity {
     }
 
     public void goBack(){
+        Intent serviceIntent = new Intent(RhythmActivity.this, MpPlayer.class);
+        stopService(serviceIntent);
+
         for(int i=0; i<9; i++){
             end_handler.removeMessages(i);
             bad_handler.removeMessages(i);
@@ -1099,28 +1093,14 @@ public class RhythmActivity extends BaseActivity {
         good_handler = null;
         perfect_handler.removeCallbacksAndMessages(null);
         perfect_handler = null;
-        if(goToNext!=null) {
-            goToNext.cancel();
-            goToNext = null;
-        }
+        goToNext.cancel();
+        goToNext = null;
 
         notPlaying = true;
-
-        sound_good_init.stop(track_good_init);
-        sound_perfect.stop(track_perfect);
-        sound_good.stop(track_good);
-        sound_bad.stop(track_bad);
-        Intent serviceIntent = new Intent(RhythmActivity.this, MpPlayer.class);
-        stopService(serviceIntent);
 
         Intent intent = new Intent(getContext(), GateActivity.class);
         startActivity(intent);
         finish();
-    }
-
-    @Override
-    public void onBackPressed() {
-        goBack();
     }
 
     @Override
