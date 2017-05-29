@@ -50,6 +50,7 @@
             android:screenOrientation="portrait" />
         <service
             android:name=".service.MpPlayer"
+            android:stopWithTask="true"
             android:enabled="true"
             android:exported="true"/>
     </application>
