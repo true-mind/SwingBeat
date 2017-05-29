@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -121,6 +122,7 @@ public class DrumActivity extends BaseActivity {
         float ydpi = matrix.ydpi;
         float x_inch = w / xdpi;
         float y_inch = h / ydpi;
+        Log.d(TAG, Double.toString(Math.sqrt(x_inch * x_inch + y_inch * y_inch)));
         return Math.sqrt(x_inch * x_inch + y_inch * y_inch);
     }
 
