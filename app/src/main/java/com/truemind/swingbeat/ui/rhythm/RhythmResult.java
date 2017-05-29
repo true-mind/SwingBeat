@@ -1,6 +1,9 @@
 package com.truemind.swingbeat.ui.rhythm;
 
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.SoundPool;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -17,7 +20,7 @@ import com.truemind.swingbeat.ui.GateActivity;
  */
 
 public class RhythmResult extends BaseActivity {
-
+    private SoundPool soundPool;
     private TextView combo;
     private TextView perfect;
     private TextView good;
@@ -25,6 +28,7 @@ public class RhythmResult extends BaseActivity {
     private TextView total;
     private LinearLayout btnMain;
 
+    private static int track;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +36,23 @@ public class RhythmResult extends BaseActivity {
 
         initView();
         initListener();
+        initSound();
 
+    }
+
+    public SoundPool build(int para1, int para2, int para3) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return new SoundPool.Builder()
+                    .build();
+        } else {
+            return new SoundPool(para1, para2, para3);
+        }
+    }
+
+    private void initSound() {
+        soundPool = build(1, AudioManager.STREAM_MUSIC, 0);
+        track = soundPool.load(getContext(), R.raw.applause, 1);
+        soundPool.play(track, 1, 1, 1, 0, 1);
     }
 
     public void initView(){
