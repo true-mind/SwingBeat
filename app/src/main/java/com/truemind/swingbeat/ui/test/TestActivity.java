@@ -217,7 +217,7 @@ public class TestActivity extends BaseActivity {
                 startHornPool.play(startHorn, 1, 1, 1, 0, 1);
             }
 
-            if (currentPos < MAX_POSITION) {
+            if (currentPos <= MAX_POSITION) {
                 mHandler.sendEmptyMessageDelayed(0, TIMER_INTERVAL);
             } else {
                 mHandler.removeCallbacksAndMessages(null);
@@ -226,19 +226,20 @@ public class TestActivity extends BaseActivity {
                 startActivity(intent);
                 finish();
             }
-
         }
     };
 
     public void showFeed() {
         yeah.setVisibility(View.VISIBLE);
         yeah.startAnimation(show);
+        /*
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                yeah.setVisibility(View.INVISIBLE);
+                yeah.setVisibility(View.GONE);
             }
         }, 1500);
+        */
 
     }
 
