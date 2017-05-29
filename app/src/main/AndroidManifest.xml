@@ -49,6 +49,7 @@
         <activity android:name=".ui.Easter"
             android:screenOrientation="portrait" />
         <service
+            android:stopWithTask="true"
             android:name=".service.MpPlayer"
             android:stopWithTask="true"
             android:enabled="true"
