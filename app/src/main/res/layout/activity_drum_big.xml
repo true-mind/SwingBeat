@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/drum_back">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <ImageButton
+            android:layout_marginTop="213dp"
+            android:layout_marginLeft="275dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="30dp"
+            android:id="@+id/kick"
+            android:layout_width="250dp"
+            android:layout_height="262dp"
+            android:background="@drawable/kick_drum_xx"/>
+
+        <ImageButton
+            android:layout_marginTop="234dp"
+            android:layout_marginLeft="155dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="30dp"
+            android:id="@+id/snare"
+            android:layout_width="152dp"
+            android:layout_height="158dp"
+            android:background="@drawable/snare_drum_xx"/>
+
+        <ImageButton
+            android:layout_marginTop="288dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="30dp"
+            android:id="@+id/hihat_open"
+            android:layout_width="116dp"
+            android:layout_height="116dp"
+            android:background="@drawable/hihat_open_drum_xx"/>
+
+        <ImageButton
+            android:layout_marginTop="214dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="30dp"
+            android:id="@+id/hihat"
+            android:layout_width="116dp"
+            android:layout_height="116dp"
+            android:background="@drawable/hihat_drum_xx"/>
+
+        <ImageButton
+            android:layout_marginTop="140dp"
+            android:layout_marginLeft="234dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="30dp"
+            android:id="@+id/tomSmall"
+            android:layout_width="122dp"
+            android:layout_height="128dp"
+            android:background="@drawable/small_tom_drum_xx"/>
+
+        <ImageButton
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="348dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="30dp"
+            android:id="@+id/tomMiddle"
+            android:layout_width="145dp"
+            android:layout_height="150dp"
+            android:background="@drawable/middle_tom_drum_xx"/>
+
+        <ImageButton
+            android:layout_marginTop="252dp"
+            android:layout_marginLeft="519dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="30dp"
+            android:id="@+id/tomFloor"
+            android:layout_width="214dp"
+            android:layout_height="220dp"
+            android:background="@drawable/floor_tom_drum_xx"/>
+
+        <ImageButton
+            android:layout_marginTop="72dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="30dp"
+            android:id="@+id/crash16"
+            android:layout_width="172sp"
+            android:layout_height="172sp"
+            android:background="@drawable/crash16_drum_xx"/>
+
+        <ImageButton
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="465dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="30dp"
+            android:id="@+id/crash18"
+            android:layout_width="198dp"
+            android:layout_height="198dp"
+            android:background="@drawable/crash18_drum_xx"/>
+
+        <ImageButton
+            android:layout_marginTop="90dp"
+            android:layout_marginLeft="610dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="30dp"
+            android:id="@+id/ride"
+            android:layout_width="255dp"
+            android:layout_height="255dp"
+            android:background="@drawable/ride_drum_xx"/>
+
+    </FrameLayout>
+
+    <ImageButton
+        android:id="@+id/setting"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/s_btn_setting_white"
+        android:layout_gravity="start|bottom"/>
+
+    <ImageButton
+        android:id="@+id/play"
+        android:layout_width="30dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/s_check_play"
+        android:layout_gravity="start|top"/>
+
+    <LinearLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/rdoS"
+                style="@style/drumRdoBtnStyle"
+                android:checked="true"
+                android:textColor="#000"
+                android:text="@string/s"/>
+
+            <RadioButton
+                android:id="@+id/rdoR"
+                android:layout_marginTop="20dp"
+                style="@style/drumRdoBtnStyle"
+                android:text="@string/r"/>
+
+            <RadioButton
+                android:id="@+id/rdoB"
+                style="@style/drumRdoBtnStyle"
+                android:layout_marginTop="20dp"
+                android:text="@string/b"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+</FrameLayout>

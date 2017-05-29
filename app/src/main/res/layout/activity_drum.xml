@@ -5,77 +5,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/drum_back">
 
-    <ImageButton
-        android:layout_marginTop="150dp"
-        android:layout_marginLeft="233dp"
-        android:id="@+id/kick"
-        android:layout_width="168dp"
-        android:layout_height="176dp"
-        android:background="@drawable/s_drum_kick"/>
-
-    <ImageButton
-        android:layout_marginTop="164dp"
-        android:layout_marginLeft="153dp"
-        android:id="@+id/snare"
-        android:layout_width="102dp"
-        android:layout_height="106dp"
-        android:background="@drawable/s_drum_snare"/>
-
-    <ImageButton
-        android:layout_marginTop="200dp"
-        android:layout_marginLeft="70dp"
-        android:id="@+id/hihat_open"
-        android:layout_width="78dp"
-        android:layout_height="78dp"
-        android:background="@drawable/s_drum_hihat_open"/>
-
-    <ImageButton
-        android:layout_marginTop="151dp"
-        android:layout_marginLeft="90dp"
-        android:id="@+id/hihat"
-        android:layout_width="78dp"
-        android:layout_height="78dp"
-        android:background="@drawable/s_drum_hihat"/>
-
-    <ImageButton
-        android:layout_marginTop="101dp"
-        android:layout_marginLeft="206dp"
-        android:id="@+id/tomSmall"
-        android:layout_width="82dp"
-        android:layout_height="86dp"
-        android:background="@drawable/s_drum_tom_small"/>
-
-    <ImageButton
-        android:layout_marginTop="74dp"
-        android:layout_marginLeft="282dp"
-        android:id="@+id/tomMiddle"
-        android:layout_width="98dp"
-        android:layout_height="100dp"
-        android:background="@drawable/s_drum_tom_middle"/>
-
-    <ImageButton
-        android:layout_marginTop="56dp"
-        android:layout_marginLeft="98dp"
-        android:id="@+id/crash16"
-        android:layout_width="116dp"
-        android:layout_height="116dp"
-        android:background="@drawable/s_drum_crash16"/>
-
-    <ImageButton
-        android:layout_marginTop="28dp"
-        android:layout_marginLeft="360dp"
-        android:id="@+id/crash18"
-        android:layout_width="134dp"
-        android:layout_height="134dp"
-        android:background="@drawable/s_drum_crash18"/>
-
-    <ImageButton
-        android:layout_marginTop="58dp"
-        android:layout_marginLeft="456dp"
-        android:id="@+id/ride"
-        android:layout_width="172dp"
-        android:layout_height="172dp"
-        android:background="@drawable/s_drum_ride"/>
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -89,7 +18,7 @@
             android:id="@+id/kick"
             android:layout_width="168dp"
             android:layout_height="176dp"
-            android:background="@drawable/s_drum_kick"/>
+            android:background="@drawable/kick_drum"/>
 
         <ImageButton
             android:layout_marginTop="156dp"
@@ -99,7 +28,7 @@
             android:id="@+id/snare"
             android:layout_width="102dp"
             android:layout_height="106dp"
-            android:background="@drawable/s_drum_snare"/>
+            android:background="@drawable/snare_drum"/>
 
         <ImageButton
             android:layout_marginTop="192dp"
@@ -109,7 +38,7 @@
             android:id="@+id/hihat_open"
             android:layout_width="78dp"
             android:layout_height="78dp"
-            android:background="@drawable/s_drum_hihat_open"/>
+            android:background="@drawable/hihat_open_drum"/>
 
         <ImageButton
             android:layout_marginTop="143dp"
@@ -119,7 +48,7 @@
             android:id="@+id/hihat"
             android:layout_width="78dp"
             android:layout_height="78dp"
-            android:background="@drawable/s_drum_hihat"/>
+            android:background="@drawable/hihat_drum"/>
 
         <ImageButton
             android:layout_marginTop="93dp"
@@ -129,7 +58,7 @@
             android:id="@+id/tomSmall"
             android:layout_width="82dp"
             android:layout_height="86dp"
-            android:background="@drawable/s_drum_tom_small"/>
+            android:background="@drawable/small_tom_drum"/>
 
         <ImageButton
             android:layout_marginTop="66dp"
@@ -139,7 +68,7 @@
             android:id="@+id/tomMiddle"
             android:layout_width="98dp"
             android:layout_height="100dp"
-            android:background="@drawable/s_drum_tom_middle"/>
+            android:background="@drawable/middle_tom_drum"/>
 
         <ImageButton
             android:layout_marginTop="168dp"
@@ -149,7 +78,7 @@
             android:id="@+id/tomFloor"
             android:layout_width="144dp"
             android:layout_height="148dp"
-            android:background="@drawable/s_drum_tom_floor"/>
+            android:background="@drawable/floor_tom_drum"/>
 
         <ImageButton
             android:layout_marginTop="48dp"
@@ -159,7 +88,7 @@
             android:id="@+id/crash16"
             android:layout_width="116dp"
             android:layout_height="116dp"
-            android:background="@drawable/s_drum_crash16"/>
+            android:background="@drawable/crash16_drum"/>
 
         <ImageButton
             android:layout_marginTop="20dp"
@@ -169,7 +98,7 @@
             android:id="@+id/crash18"
             android:layout_width="134dp"
             android:layout_height="134dp"
-            android:background="@drawable/s_drum_crash18"/>
+            android:background="@drawable/crash18_drum"/>
 
         <ImageButton
             android:layout_marginTop="58dp"
@@ -179,7 +108,7 @@
             android:id="@+id/ride"
             android:layout_width="172dp"
             android:layout_height="172dp"
-            android:background="@drawable/s_drum_ride"/>
+            android:background="@drawable/ride_drum"/>
 
     </FrameLayout>
 
@@ -235,13 +164,5 @@
         </RadioGroup>
 
     </LinearLayout>
-
-    <ImageButton
-        android:id="@+id/tomFloor"
-        android:layout_width="144dp"
-        android:layout_height="148dp"
-        android:layout_marginLeft="396dp"
-        android:layout_marginTop="176dp"
-        android:background="@drawable/s_drum_tom_floor" />
 
 </FrameLayout>
