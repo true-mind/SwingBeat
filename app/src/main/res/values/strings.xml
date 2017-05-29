@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">SwingBeat</string>
+    <string name="app_name">SwingBeat(Beta)</string>
+
+
     <string name="goHomePage">스윙에어(Swing Air) 보러가기</string>
     <string name="virtual_drum">[Virtual Drum]</string>
     <string name="virtual_drumText1">Swing Air와 함께 신나는 가상드럼을</string>
@@ -11,7 +13,7 @@
     <string name="speed_testText1">Swing Air와 함께 사용자의</string>
     <string name="speed_testText2">반응속도를 테스트 해보세요!!</string>
     <string name="exitMessage">\"Back\"버튼 을 한번 더 눌러 SwingBeat를 종료</string>
-    <string name="confirm">확인</string>
+    <string name="confirm">확인</string>178021
     <string name="cancel">취소</string>
     <string name="setting">Setting</string>
     <string name="click1">1번 버튼 클릭 시 :</string>
