@@ -23,9 +23,9 @@ public class Constants {
 
     public static int DRUM_KEY1 = 3;
     public static int DRUM_KEY2 = 11;
-    public static int DRUM_KEY3 = 1;
-    public static int DRUM_KEY4 = 9;
-    public static int DRUM_KEY5 = 10;
+    public static int DRUM_KEY3 = 9;
+    public static int DRUM_KEY4 = 10;
+    public static int DRUM_KEY5 = 1;
     public static int DRUM_KEY6 = 2;
     public static int DRUM_KEY7 = 5;
     public static int DRUM_KEY8 = 6;
@@ -44,7 +44,6 @@ public class Constants {
 
     public static int TIMER = 1000;
     public static int TIMER_SPINNER_POSITION = 2;
-
 
     public static int RHYTHM_MAX_COMBO = 0;
     public static int RHYTHM_PERFECT = 0;

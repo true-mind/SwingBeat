@@ -51,6 +51,7 @@ public class TestIntro extends BaseActivity {
         timeData.add("2000");
         timeData.add("2500");
         timeData.add("3000");
+        timeData.add("10000");
         adapterSpinner = new AdapterSpinner(getContext(), timeData);
 
         TextView title = (TextView) findViewById(R.id.title);
@@ -104,27 +105,31 @@ public class TestIntro extends BaseActivity {
 
     @Override
     public void onkey1() {
-        goBack();
+        startActivity(new Intent(getContext(), TestActivity.class));
+        finish();
     }
 
     @Override
     public void onkey2() {
-        goBack();
+        startActivity(new Intent(getContext(), TestActivity.class));
+        finish();
     }
 
     @Override
     public void onkey3() {
-        timerSet.performClick();
+        startActivity(new Intent(getContext(), TestActivity.class));
+        finish();
     }
 
     @Override
     public void onkey4() {
-
+        timerSet.performClick();
     }
 
     @Override
     public void onkey5() {
-
+        startActivity(new Intent(getContext(), GateActivity.class));
+        finish();
     }
 
     @Override

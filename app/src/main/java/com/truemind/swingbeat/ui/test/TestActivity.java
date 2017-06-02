@@ -207,7 +207,6 @@ public class TestActivity extends BaseActivity {
 
     Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
-            currentPos++;
             text = randomText.nextInt(4);
             makeNext(randomColor.nextInt(4), text);
             score.setText(Integer.toString(numberRight));
@@ -232,18 +231,10 @@ public class TestActivity extends BaseActivity {
     public void showFeed() {
         yeah.setVisibility(View.VISIBLE);
         yeah.startAnimation(show);
-        /*
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                yeah.setVisibility(View.GONE);
-            }
-        }, 1500);
-        */
-
     }
 
     public void makeNext(int color, int text) {
+        currentPos++;
         switch (color) {
             case COLOR_BLUE:
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

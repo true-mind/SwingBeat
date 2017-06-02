@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Build;
 import android.os.CountDownTimer;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -24,6 +26,8 @@ import com.truemind.swingbeat.Constants;
 import com.truemind.swingbeat.R;
 import com.truemind.swingbeat.service.MpPlayer;
 import com.truemind.swingbeat.ui.GateActivity;
+import com.truemind.swingbeat.util.NewMediaPlayer;
+import com.truemind.swingbeat.util.OnRSingleClickListener;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -105,10 +109,13 @@ public class RhythmActivity extends BaseActivity {
 
     private Animation bounce;
 
+    NewMediaPlayer nmp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rhythm_new);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        nmp = new NewMediaPlayer(getContext());
 
         initView();
         initHandler();
@@ -160,14 +167,34 @@ public class RhythmActivity extends BaseActivity {
                         sound_good.stop(track_good);
                         sound_bad.stop(track_bad);
 
-                        Intent serviceIntent = new Intent(RhythmActivity.this, MpPlayer.class);
-                        stopService(serviceIntent);
-                        Intent intent = new Intent(RhythmActivity.this, RhythmResult.class);
-                        startActivity(intent);
+                        goResult();
+
                     }
                 });
             }
         }, sec);
+    }
+
+    public void goResult(){
+        /*
+        Intent serviceIntent = new Intent(RhythmActivity.this, MpPlayer.class);
+        stopService(serviceIntent);*/
+
+        //TODO : Stop every soundpools
+
+        sound_good_init.stop(track_good_init);
+        sound_perfect.stop(track_perfect);
+        sound_good.stop(track_good);
+        sound_bad.stop(track_bad);
+
+        sound_good_init.release();
+        sound_perfect.release();
+        sound_good.release();
+        sound_bad.release();
+
+        Intent intent = new Intent(RhythmActivity.this, RhythmResult.class);
+        startActivity(intent);
+
     }
 
     private void initCountDown() {
@@ -248,7 +275,7 @@ public class RhythmActivity extends BaseActivity {
 
     private void initMoves(){
         media_handler.sendEmptyMessageDelayed(0, 1900);
-        sec = 1400;
+        sec = 1000;
 
         controlMoves(1, sec);
         sec+=beat/2;
@@ -608,8 +635,11 @@ public class RhythmActivity extends BaseActivity {
 
 
     private void initMediaPlayer() {
+        /*
         Intent intent = new Intent(RhythmActivity.this, MpPlayer.class);
-        startService(intent);
+        startService(intent);*/
+        //TODO : Test
+        nmp.playMedia();
     }
 
     private void initListener() {
@@ -628,16 +658,16 @@ public class RhythmActivity extends BaseActivity {
             };
         }
 
-        buttonQuit.setOnClickListener(new View.OnClickListener() {
+        buttonQuit.setOnClickListener(new OnRSingleClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onSingleClick(View v) {
                 goBack();
             }
         });
 
-        button1.setOnClickListener(new View.OnClickListener() {
+        button1.setOnClickListener(new OnRSingleClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onSingleClick(View v) {
                 v.startAnimation(bounce);
                 int perfect = -1;
                 int good = -1;
@@ -693,9 +723,9 @@ public class RhythmActivity extends BaseActivity {
             }
         });
 
-        button2.setOnClickListener(new View.OnClickListener() {
+        button2.setOnClickListener(new OnRSingleClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onSingleClick(View v) {
                 v.startAnimation(bounce);
                 int perfect = -1;
                 int good = -1;
@@ -745,9 +775,9 @@ public class RhythmActivity extends BaseActivity {
             }
         });
 
-        button3.setOnClickListener(new View.OnClickListener() {
+        button3.setOnClickListener(new OnRSingleClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onSingleClick(View v) {
                 v.startAnimation(bounce);
                 int perfect = -1;
                 int good = -1;
@@ -1110,8 +1140,11 @@ public class RhythmActivity extends BaseActivity {
         sound_perfect.stop(track_perfect);
         sound_good.stop(track_good);
         sound_bad.stop(track_bad);
+        /*
         Intent serviceIntent = new Intent(RhythmActivity.this, MpPlayer.class);
-        stopService(serviceIntent);
+        stopService(serviceIntent);*/
+        //TODO : Test
+        nmp.destroyMedia();
 
         Intent intent = new Intent(getContext(), GateActivity.class);
         startActivity(intent);
@@ -1128,7 +1161,11 @@ public class RhythmActivity extends BaseActivity {
         super.onDestroy();
 
         notPlaying = true;
+        /*
         Intent intent = new Intent(RhythmActivity.this, MpPlayer.class);
-        stopService(intent);
+        stopService(intent);*/
+        //TODO : Test
+        nmp.destroyMedia();
+
     }
 }

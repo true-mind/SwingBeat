@@ -32,7 +32,7 @@ import com.truemind.swingbeat.util.ProgressDialog;
 public class DrumActivity extends BaseActivity {
 
     private static final String TAG = "MyTag";
-    public static int SNARE_WHAT = 1;
+    public int SNARE_WHAT = 1;
 
     private ImageButton kick;
     private ImageButton snare;
