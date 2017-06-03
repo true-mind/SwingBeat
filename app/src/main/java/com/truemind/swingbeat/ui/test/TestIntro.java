@@ -41,17 +41,17 @@ public class TestIntro extends BaseActivity {
     }
 
     public void initView() {
-        timeData.add("600");
-        timeData.add("800");
-        timeData.add("1000");
-        timeData.add("1200");
-        timeData.add("1400");
-        timeData.add("1600");
-        timeData.add("1800");
-        timeData.add("2000");
-        timeData.add("2500");
-        timeData.add("3000");
-        timeData.add("10000");
+        timeData.add("600ms");
+        timeData.add("800ms");
+        timeData.add("1000ms");
+        timeData.add("1200ms");
+        timeData.add("1400ms");
+        timeData.add("1600ms");
+        timeData.add("1800ms");
+        timeData.add("2000ms");
+        timeData.add("2500ms");
+        timeData.add("3000ms");
+        timeData.add("10000ms");
         adapterSpinner = new AdapterSpinner(getContext(), timeData);
 
         TextView title = (TextView) findViewById(R.id.title);
@@ -74,11 +74,30 @@ public class TestIntro extends BaseActivity {
         setFontToViewBold2(title);
     }
 
+    private String stringCut(String time){
+
+        String intTime;
+        switch(time.length()){
+            case 5:
+                intTime = time.substring(0, 3);
+                break;
+            case 6:
+                intTime = time.substring(0, 4);
+                break;
+            case 7:
+                intTime = time.substring(0, 5);
+                break;
+            default:
+                intTime = "1000";
+        }
+        return intTime;
+    }
+
     public void initListener() {
         timerSet.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Constants.TIMER = Integer.parseInt(timeData.get(position));
+                Constants.TIMER = Integer.parseInt(stringCut(timeData.get(position)));
                 Constants.TIMER_SPINNER_POSITION = position;
             }
 

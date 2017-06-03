@@ -67,6 +67,12 @@ public abstract class BaseActivity extends Activity {
         return this;
     }
 
+
+    public Context getAppContext()
+    {
+        return getApplicationContext();
+    }
+
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
         if(event.getAction() == KeyEvent.ACTION_DOWN) {

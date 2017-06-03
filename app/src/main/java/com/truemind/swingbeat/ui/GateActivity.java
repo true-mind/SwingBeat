@@ -138,6 +138,24 @@ public class GateActivity extends BaseActivity {
 
     }
 
+    private void clearApplicationCache(java.io.File dir){
+        if(dir==null)
+            dir = getCacheDir();
+        else;
+        if(dir==null)
+            return;
+        else;
+        java.io.File[] children = dir.listFiles();
+        try{
+            for(int i=0;i<children.length;i++)
+                if(children[i].isDirectory())
+                    clearApplicationCache(children[i]);
+                else children[i].delete();
+        }
+        catch(Exception e){}
+    }
+
+
     @Override
     public void onBackPressed() {
         goBack();
@@ -149,6 +167,7 @@ public class GateActivity extends BaseActivity {
 
         if(0<=intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
             super.onBackPressed();
+            clearApplicationCache(null);
         }
         else
         {

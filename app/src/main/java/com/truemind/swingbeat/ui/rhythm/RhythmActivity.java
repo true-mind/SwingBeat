@@ -110,6 +110,7 @@ public class RhythmActivity extends BaseActivity {
     private Animation bounce;
 
     NewMediaPlayer nmp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -145,16 +146,16 @@ public class RhythmActivity extends BaseActivity {
         track_perfect = sound_perfect.load(getContext(), R.raw.burst, 1);
     }
 
-    private void goToScore(long sec){
+    private void goToScore(long sec) {
         goToNext = new Timer();
 
-        goToNext.schedule(new TimerTask(){
+        goToNext.schedule(new TimerTask() {
             @Override
             public void run() {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if(combo>maxCombo){
+                        if (combo > maxCombo) {
                             maxCombo = combo;
                         }
                         Constants.RHYTHM_MAX_COMBO = maxCombo;
@@ -175,7 +176,7 @@ public class RhythmActivity extends BaseActivity {
         }, sec);
     }
 
-    public void goResult(){
+    public void goResult() {
         /*
         Intent serviceIntent = new Intent(RhythmActivity.this, MpPlayer.class);
         stopService(serviceIntent);*/
@@ -198,20 +199,19 @@ public class RhythmActivity extends BaseActivity {
     }
 
     private void initCountDown() {
-        maxCombo=0;
-        perfect_count=0;
-        good_count=0;
-        bad_count=0;
+        maxCombo = 0;
+        perfect_count = 0;
+        good_count = 0;
+        bad_count = 0;
 
-        new CountDownTimer(3100, 1000){
+        new CountDownTimer(3100, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                if(countdown==3){
+                if (countdown == 3) {
                     timer1.setImageResource(R.drawable.timer_on);
-                }
-                else if(countdown==2){
+                } else if (countdown == 2) {
                     timer2.setImageResource(R.drawable.timer_on);
-                }else if(countdown==1){
+                } else if (countdown == 1) {
                     timer3.setImageResource(R.drawable.timer_on);
                 }
                 countdown--;
@@ -227,45 +227,45 @@ public class RhythmActivity extends BaseActivity {
         }.start();
     }
 
-    private void controlMoves(int i, long time){
-        if(notPlaying){
+    private void controlMoves(int i, long time) {
+        if (notPlaying) {
             return;
         }
-        switch(i){
+        switch (i) {
             case 1:
-                if(mIndex1==0){
+                if (mIndex1 == 0) {
                     startAfter(0, mIndex1, time, move1_1);
                     mIndex1++;
-                }else if(mIndex1==1){
+                } else if (mIndex1 == 1) {
                     startAfter(0, mIndex1, time, move1_2);
                     mIndex1++;
-                }else{
+                } else {
                     startAfter(0, mIndex1, time, move1_3);
-                    mIndex1=0;
+                    mIndex1 = 0;
                 }
                 break;
             case 2:
-                if(mIndex2==0){
+                if (mIndex2 == 0) {
                     startAfter(1, mIndex2, time, move2_1);
                     mIndex2++;
-                }else if(mIndex2==1){
+                } else if (mIndex2 == 1) {
                     startAfter(1, mIndex2, time, move2_2);
                     mIndex2++;
-                }else{
+                } else {
                     startAfter(1, mIndex2, time, move2_3);
-                    mIndex2=0;
+                    mIndex2 = 0;
                 }
                 break;
             case 3:
-                if(mIndex3==0){
+                if (mIndex3 == 0) {
                     startAfter(2, mIndex3, time, move3_1);
                     mIndex3++;
-                }else if(mIndex3==1){
+                } else if (mIndex3 == 1) {
                     startAfter(2, mIndex3, time, move3_2);
                     mIndex3++;
-                }else{
+                } else {
                     startAfter(2, mIndex3, time, move3_3);
-                    mIndex3=0;
+                    mIndex3 = 0;
                 }
                 break;
             default:
@@ -273,383 +273,384 @@ public class RhythmActivity extends BaseActivity {
         }
     }
 
-    private void initMoves(){
+    private void initMoves() {
         media_handler.sendEmptyMessageDelayed(0, 1900);
         sec = 1000;
 
         controlMoves(1, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(1, sec);
-        sec+=beat/2;
+        sec += beat / 2;
 
         controlMoves(2, sec);
-        sec+=beat;
+        sec += beat;
         controlMoves(3, sec);
-        sec+=beat;
+        sec += beat;
         controlMoves(1, sec);
-        sec+=beat;
+        sec += beat;
         controlMoves(2, sec);
-        sec+=beat;
+        sec += beat;
 
 
         controlMoves(1, sec);
-        sec+=beat;
+        sec += beat;
         controlMoves(3, sec);
-        sec+=beat;
+        sec += beat;
         controlMoves(2, sec);
-        sec+=beat;
+        sec += beat;
         controlMoves(3, sec);
-        sec+=beat;
+        sec += beat;
 
         controlMoves(2, sec);
-        sec+=beat;
+        sec += beat;
         controlMoves(3, sec);
-        sec+=beat;
+        sec += beat;
         controlMoves(1, sec);
-        sec+=beat;
+        sec += beat;
         controlMoves(2, sec);
-        sec+=beat;
+        sec += beat;
 
         controlMoves(1, sec);
-        sec+=beat;
+        sec += beat;
         controlMoves(3, sec);
-        sec+=beat;
+        sec += beat;
         controlMoves(2, sec);
-        sec+=beat*2;
+        sec += beat * 2;
 
         //반주
 
         controlMoves(1, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(1, sec);
-        sec+=beat;
+        sec += beat;
         controlMoves(3, sec);
-        sec+=beat/2;
+        sec += beat / 2;
 
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(2, sec);
-        sec+=beat;
+        sec += beat;
         controlMoves(3, sec);
-        sec+=beat/2;
+        sec += beat / 2;
 
         controlMoves(1, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(1, sec);
-        sec+=beat;
+        sec += beat;
         controlMoves(3, sec);
-        sec+=beat/2;
+        sec += beat / 2;
 
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(2, sec);
-        sec+=beat;
+        sec += beat;
         controlMoves(3, sec);
-        sec+=beat/2;
+        sec += beat / 2;
 
         controlMoves(3, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(1, sec);
-        sec+=beat;
+        sec += beat;
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
 
         controlMoves(1, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(3, sec);
-        sec+=beat;
+        sec += beat;
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
 
         controlMoves(3, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(1, sec);
-        sec+=beat;
+        sec += beat;
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
 
         controlMoves(1, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(3, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(1, sec);
-        sec+=beat/2;
+        sec += beat / 2;
 
         //후렴
 
         controlMoves(3, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(3, sec);
-        sec+=beat/2;
+        sec += beat / 2;
 
         controlMoves(1, sec);
-        sec+=beat;
+        sec += beat;
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(1, sec);
-        sec+=beat/2;
+        sec += beat / 2;
 
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(3, sec);
-        sec+=beat/4;
+        sec += beat / 4;
         controlMoves(2, sec);
-        sec+=beat/4;
+        sec += beat / 4;
         controlMoves(3, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(1, sec);
-        sec+=beat/2;
+        sec += beat / 2;
 
-        sec+=beat;
+        sec += beat;
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(1, sec);
-        sec+=beat/2;
+        sec += beat / 2;
 
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(1, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(3, sec);
-        sec+=beat/2;
+        sec += beat / 2;
 
-        sec+=beat;
+        sec += beat;
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(1, sec);
-        sec+=beat/2;
+        sec += beat / 2;
 
         controlMoves(3, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(2, sec);
-        sec+=beat/4;
+        sec += beat / 4;
         controlMoves(1, sec);
-        sec+=beat/4;
+        sec += beat / 4;
         controlMoves(3, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
 
         // 2절
 
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(1, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(1, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
 
         controlMoves(3, sec);
-        sec+=beat/4;
+        sec += beat / 4;
         controlMoves(2, sec);
-        sec+=beat/4;
+        sec += beat / 4;
         controlMoves(3, sec);
-        sec+=beat/4*3;
+        sec += beat / 4 * 3;
         controlMoves(1, sec);
-        sec+=beat/4*3;
+        sec += beat / 4 * 3;
 
-        sec+=beat;
+        sec += beat;
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(1, sec);
-        sec+=beat/2;
+        sec += beat / 2;
 
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(3, sec);
-        sec+=beat/2;
-        sec+=beat;
+        sec += beat / 2;
+        sec += beat;
 
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(1, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(3, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
 
         controlMoves(3, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(2, sec);
-        sec+=beat/2;
-        sec+=beat;
+        sec += beat / 2;
+        sec += beat;
 
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(1, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(1, sec);
-        sec+=beat/2;
+        sec += beat / 2;
 
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(1, sec);
-        sec+=beat/2*3;
+        sec += beat / 2 * 3;
 
         controlMoves(1, sec);
         controlMoves(3, sec);
-        sec+=beat;
+        sec += beat;
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
 
         // 2절 후렴
 
         controlMoves(3, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(3, sec);
-        sec+=beat/2;
+        sec += beat / 2;
 
         controlMoves(1, sec);
-        sec+=beat;
+        sec += beat;
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(1, sec);
-        sec+=beat/2;
-
-        controlMoves(1, sec);
-        sec+=beat/2;
-        controlMoves(2, sec);
-        sec+=beat/2;
-        controlMoves(2, sec);
-        sec+=beat/2;
-        controlMoves(3, sec);
-        sec+=beat/2;
-
-        sec+=beat;
-        controlMoves(2, sec);
-        sec+=beat/2;
-        controlMoves(1, sec);
-        sec+=beat/2;
-
-        controlMoves(2, sec);
-        sec+=beat/2;
-        controlMoves(1, sec);
-        sec+=beat/2;
-        controlMoves(2, sec);
-        sec+=beat/2;
-        controlMoves(3, sec);
-        sec+=beat/2;
-
-        sec+=beat;
-        controlMoves(2, sec);
-        sec+=beat/2;
-        controlMoves(1, sec);
-        sec+=beat/2;
-
-        controlMoves(3, sec);
-        sec+=beat/2;
-        controlMoves(2, sec);
-        sec+=beat/4;
-        controlMoves(1, sec);
-        sec+=beat/4;
-        controlMoves(3, sec);
-        sec+=beat/2;
-        controlMoves(2, sec);
-        sec+=beat/2;
-
-        controlMoves(3, sec);
-        sec+=beat;
-        controlMoves(2, sec);
-        sec+=beat/2;
-
-        controlMoves(3, sec);
-        sec+=beat;
-        controlMoves(3, sec);
-        sec+=beat/2;
-        controlMoves(2, sec);
-        sec+=beat/2;
-
-        controlMoves(3, sec);
-        sec+=beat;
-        controlMoves(1, sec);
-        sec+=beat/2;
-        controlMoves(2, sec);
-        sec+=beat/2;
-
-        controlMoves(3, sec);
-        sec+=beat;
-        controlMoves(3, sec);
-        sec+=beat/2;
-        controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
 
         controlMoves(1, sec);
-        controlMoves(3, sec);
-        sec+=beat;
-
+        sec += beat / 2;
         controlMoves(2, sec);
-        controlMoves(3, sec);
-        sec+=beat;
-
-
-        controlMoves(3, sec);
-        sec+=beat;
-        controlMoves(3, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(2, sec);
-        sec+=beat/2;
-
+        sec += beat / 2;
         controlMoves(3, sec);
-        sec+=beat;
+        sec += beat / 2;
+
+        sec += beat;
+        controlMoves(2, sec);
+        sec += beat / 2;
         controlMoves(1, sec);
-        sec+=beat/2;
+        sec += beat / 2;
+
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 2;
+        controlMoves(1, sec);
+        sec += beat / 2;
+        controlMoves(2, sec);
+        sec += beat / 2;
+        controlMoves(3, sec);
+        sec += beat / 2;
+
+        sec += beat;
+        controlMoves(2, sec);
+        sec += beat / 2;
+        controlMoves(1, sec);
+        sec += beat / 2;
 
         controlMoves(3, sec);
-        sec+=beat;
-        controlMoves(3, sec);
-        sec+=beat/2;
+        sec += beat / 2;
         controlMoves(2, sec);
-        sec+=beat/2;
+        sec += beat / 4;
+        controlMoves(1, sec);
+        sec += beat / 4;
+        controlMoves(3, sec);
+        sec += beat / 2;
+        controlMoves(2, sec);
+        sec += beat / 2;
+
+        controlMoves(3, sec);
+        sec += beat;
+        controlMoves(2, sec);
+        sec += beat / 2;
+
+        controlMoves(3, sec);
+        sec += beat;
+        controlMoves(3, sec);
+        sec += beat / 2;
+        controlMoves(2, sec);
+        sec += beat / 2;
+
+        controlMoves(3, sec);
+        sec += beat;
+        controlMoves(1, sec);
+        sec += beat / 2;
+        controlMoves(2, sec);
+        sec += beat / 2;
+
+        controlMoves(3, sec);
+        sec += beat;
+        controlMoves(3, sec);
+        sec += beat / 2;
+        controlMoves(2, sec);
+        sec += beat / 2;
 
         controlMoves(1, sec);
         controlMoves(3, sec);
-        sec+=beat;
+        sec += beat;
 
         controlMoves(2, sec);
         controlMoves(3, sec);
-        sec+=beat;
+        sec += beat;
+
+
+        controlMoves(3, sec);
+        sec += beat;
+        controlMoves(3, sec);
+        sec += beat / 2;
+        controlMoves(2, sec);
+        sec += beat / 2;
+
+        controlMoves(3, sec);
+        sec += beat;
+        controlMoves(1, sec);
+        sec += beat / 2;
+        controlMoves(2, sec);
+        sec += beat / 2;
+
+        controlMoves(3, sec);
+        sec += beat;
+        controlMoves(3, sec);
+        sec += beat / 2;
+        controlMoves(2, sec);
+        sec += beat / 2;
+
+        controlMoves(1, sec);
+        controlMoves(3, sec);
+        sec += beat;
+
+        controlMoves(2, sec);
+        controlMoves(3, sec);
+        sec += beat;
 
         controlMoves(1, sec);
         controlMoves(3, sec);
 
-        sec+=10000;
+        sec += 10000;
         goToScore(sec);
     }
 
 
     private void initMediaPlayer() {
         /*
+        //TODO : Test
         Intent intent = new Intent(RhythmActivity.this, MpPlayer.class);
         startService(intent);*/
-        //TODO : Test
+
         nmp.playMedia();
     }
 
     private void initListener() {
         AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         int result = am.requestAudioFocus(onAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
-        if(result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED){
+        if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
             onAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
                 @Override
                 public void onAudioFocusChange(int focusChange) {
-                    switch(focusChange){
+                    switch (focusChange) {
                         case AudioManager.AUDIOFOCUS_LOSS:
                             goBack();
                             break;
@@ -673,49 +674,43 @@ public class RhythmActivity extends BaseActivity {
                 int good = -1;
                 int bad = -1;
                 int view = -1;
-                for(int i=0; i<3; i++){
-                    if(isPerfect[i]){
+                for (int i = 0; i < 3; i++) {
+                    if (isPerfect[i]) {
                         perfect = i;
-                    }
-                    else if(isGood[i]){
+                    } else if (isGood[i]) {
                         good = i;
-                    }
-                    else if(isBad[i]){
+                    } else if (isBad[i]) {
                         bad = i;
-                    }
-                    else if(isOnView[i]){
+                    } else if (isOnView[i]) {
                         view = i;
                     }
                 }
-                if(perfect!=-1){
+                if (perfect != -1) {
                     perfect_count++;
                     tv_current.setText("Perfect");
-                    Log.d("MyTag", "in button1 -- perfect:"+perfect);
-                    Log.d("MyTag", "in button1 -- perfect:["+isPerfect[0]+"]["+isPerfect[1]+"]["+isPerfect[2]+"]["+isPerfect[3]+"]["+isPerfect[4]+"]["+isPerfect[5]+"]["+isPerfect[6]+"]["+isPerfect[7]+"]["+isPerfect[8]+"]");
-                    Log.d("MyTag", "in button1 -- isOnView:["+isOnView[0]+"]["+isOnView[1]+"]["+isOnView[2]+"]["+isOnView[3]+"]["+isOnView[4]+"]["+isOnView[5]+"]["+isOnView[6]+"]["+isOnView[7]+"]["+isOnView[8]+"]");
+                    Log.d("MyTag", "in button1 -- perfect:" + perfect);
+                    Log.d("MyTag", "in button1 -- perfect:[" + isPerfect[0] + "][" + isPerfect[1] + "][" + isPerfect[2] + "][" + isPerfect[3] + "][" + isPerfect[4] + "][" + isPerfect[5] + "][" + isPerfect[6] + "][" + isPerfect[7] + "][" + isPerfect[8] + "]");
+                    Log.d("MyTag", "in button1 -- isOnView:[" + isOnView[0] + "][" + isOnView[1] + "][" + isOnView[2] + "][" + isOnView[3] + "][" + isOnView[4] + "][" + isOnView[5] + "][" + isOnView[6] + "][" + isOnView[7] + "][" + isOnView[8] + "]");
 
                     end(moveList.get(perfect), perfect);
                     upCombo();
-                }
-                else if(good!=-1){
+                } else if (good != -1) {
                     good_count++;
                     tv_current.setText("Good");
                     end(moveList.get(good), good);
-                    Log.d("MyTag", "in button1 -- good:"+good);
-                    Log.d("MyTag", "in button1 -- isOnView:["+isOnView[0]+"]["+isOnView[1]+"]["+isOnView[2]+"]["+isOnView[3]+"]["+isOnView[4]+"]["+isOnView[5]+"]["+isOnView[6]+"]["+isOnView[7]+"]["+isOnView[8]+"]");
+                    Log.d("MyTag", "in button1 -- good:" + good);
+                    Log.d("MyTag", "in button1 -- isOnView:[" + isOnView[0] + "][" + isOnView[1] + "][" + isOnView[2] + "][" + isOnView[3] + "][" + isOnView[4] + "][" + isOnView[5] + "][" + isOnView[6] + "][" + isOnView[7] + "][" + isOnView[8] + "]");
 
                     upCombo();
-                }
-                else if(bad!=-1){
+                } else if (bad != -1) {
                     bad_count++;
                     tv_current.setText("Bad");
                     end(moveList.get(bad), bad);
-                    Log.d("MyTag", "in button1 -- bad:"+bad);
-                    Log.d("MyTag", "in button1 -- isOnView:["+isOnView[0]+"]["+isOnView[1]+"]["+isOnView[2]+"]["+isOnView[3]+"]["+isOnView[4]+"]["+isOnView[5]+"]["+isOnView[6]+"]["+isOnView[7]+"]["+isOnView[8]+"]");
+                    Log.d("MyTag", "in button1 -- bad:" + bad);
+                    Log.d("MyTag", "in button1 -- isOnView:[" + isOnView[0] + "][" + isOnView[1] + "][" + isOnView[2] + "][" + isOnView[3] + "][" + isOnView[4] + "][" + isOnView[5] + "][" + isOnView[6] + "][" + isOnView[7] + "][" + isOnView[8] + "]");
 
                     upCombo();
-                }
-                else if(view!=-1){
+                } else if (view != -1) {
                     tv_current.setText("");
                     end(moveList.get(view), view);
                     initCombo();
@@ -731,43 +726,37 @@ public class RhythmActivity extends BaseActivity {
                 int good = -1;
                 int bad = -1;
                 int view = -1;
-                for(int i=3; i<6; i++){
-                    if(isPerfect[i]){
+                for (int i = 3; i < 6; i++) {
+                    if (isPerfect[i]) {
                         perfect = i;
-                    }
-                    else if(isGood[i]){
+                    } else if (isGood[i]) {
                         good = i;
-                    }
-                    else if(isBad[i]){
+                    } else if (isBad[i]) {
                         bad = i;
-                    }
-                    else if(isOnView[i]){
+                    } else if (isOnView[i]) {
                         view = i;
                     }
                 }
-                if(perfect!=-1){
+                if (perfect != -1) {
                     perfect_count++;
-                    Log.d("MyTag", "in button2 -- perfect:"+perfect);
-                    Log.d("MyTag", "in button2 -- perfect:["+isPerfect[0]+"]["+isPerfect[1]+"]["+isPerfect[2]+"]["+isPerfect[3]+"]["+isPerfect[4]+"]["+isPerfect[5]+"]["+isPerfect[6]+"]["+isPerfect[7]+"]["+isPerfect[8]+"]");
-                    Log.d("MyTag", "in button2 -- isOnView:["+isOnView[0]+"]["+isOnView[1]+"]["+isOnView[2]+"]["+isOnView[3]+"]["+isOnView[4]+"]["+isOnView[5]+"]["+isOnView[6]+"]["+isOnView[7]+"]["+isOnView[8]+"]");
+                    Log.d("MyTag", "in button2 -- perfect:" + perfect);
+                    Log.d("MyTag", "in button2 -- perfect:[" + isPerfect[0] + "][" + isPerfect[1] + "][" + isPerfect[2] + "][" + isPerfect[3] + "][" + isPerfect[4] + "][" + isPerfect[5] + "][" + isPerfect[6] + "][" + isPerfect[7] + "][" + isPerfect[8] + "]");
+                    Log.d("MyTag", "in button2 -- isOnView:[" + isOnView[0] + "][" + isOnView[1] + "][" + isOnView[2] + "][" + isOnView[3] + "][" + isOnView[4] + "][" + isOnView[5] + "][" + isOnView[6] + "][" + isOnView[7] + "][" + isOnView[8] + "]");
 
                     tv_current.setText("Perfect");
                     end(moveList.get(perfect), perfect);
                     upCombo();
-                }
-                else if(good!=-1){
+                } else if (good != -1) {
                     good_count++;
                     tv_current.setText("Good");
                     end(moveList.get(good), good);
                     upCombo();
-                }
-                else if(bad!=-1){
+                } else if (bad != -1) {
                     bad_count++;
                     tv_current.setText("Bad");
                     end(moveList.get(bad), bad);
                     upCombo();
-                }
-                else if(view!=-1){
+                } else if (view != -1) {
                     tv_current.setText("");
                     end(moveList.get(view), view);
                     initCombo();
@@ -783,42 +772,36 @@ public class RhythmActivity extends BaseActivity {
                 int good = -1;
                 int bad = -1;
                 int view = -1;
-                for(int i=6; i<9; i++){
-                    if(isPerfect[i]){
+                for (int i = 6; i < 9; i++) {
+                    if (isPerfect[i]) {
                         perfect = i;
-                    }
-                    else if(isGood[i]){
+                    } else if (isGood[i]) {
                         good = i;
-                    }
-                    else if(isBad[i]){
+                    } else if (isBad[i]) {
                         bad = i;
-                    }
-                    else if(isOnView[i]){
+                    } else if (isOnView[i]) {
                         view = i;
                     }
                 }
-                if(perfect!=-1){
+                if (perfect != -1) {
                     perfect_count++;
-                    Log.d("MyTag", "in button3 -- perfect:"+perfect);
-                    Log.d("MyTag", "in button3 -- perfect:["+isPerfect[0]+"]["+isPerfect[1]+"]["+isPerfect[2]+"]["+isPerfect[3]+"]["+isPerfect[4]+"]["+isPerfect[5]+"]["+isPerfect[6]+"]["+isPerfect[7]+"]["+isPerfect[8]+"]");
-                    Log.d("MyTag", "in button3 -- isOnView:["+isOnView[0]+"]["+isOnView[1]+"]["+isOnView[2]+"]["+isOnView[3]+"]["+isOnView[4]+"]["+isOnView[5]+"]["+isOnView[6]+"]["+isOnView[7]+"]["+isOnView[8]+"]");
+                    Log.d("MyTag", "in button3 -- perfect:" + perfect);
+                    Log.d("MyTag", "in button3 -- perfect:[" + isPerfect[0] + "][" + isPerfect[1] + "][" + isPerfect[2] + "][" + isPerfect[3] + "][" + isPerfect[4] + "][" + isPerfect[5] + "][" + isPerfect[6] + "][" + isPerfect[7] + "][" + isPerfect[8] + "]");
+                    Log.d("MyTag", "in button3 -- isOnView:[" + isOnView[0] + "][" + isOnView[1] + "][" + isOnView[2] + "][" + isOnView[3] + "][" + isOnView[4] + "][" + isOnView[5] + "][" + isOnView[6] + "][" + isOnView[7] + "][" + isOnView[8] + "]");
                     tv_current.setText("Perfect");
                     end(moveList.get(perfect), perfect);
                     upCombo();
-                }
-                else if(good!=-1){
+                } else if (good != -1) {
                     good_count++;
                     tv_current.setText("Good");
                     end(moveList.get(good), good);
                     upCombo();
-                }
-                else if(bad!=-1) {
+                } else if (bad != -1) {
                     bad_count++;
                     tv_current.setText("Bad");
                     end(moveList.get(bad), bad);
                     upCombo();
-                }
-                else if(view!=-1){
+                } else if (view != -1) {
                     tv_current.setText("");
                     end(moveList.get(view), view);
                     initCombo();
@@ -828,27 +811,27 @@ public class RhythmActivity extends BaseActivity {
     }
 
     private void initHandler() {
-        media_handler = new Handler(){
+        media_handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 initMediaPlayer();
             }
         };
 
-        end_handler = new Handler(){
+        end_handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
-                if(isOnView[msg.what] == false){
+                if (isOnView[msg.what] == false) {
                     return;
                 }
-                int index = msg.what/3;
-                int sub_index = msg.what%3;
+                int index = msg.what / 3;
+                int sub_index = msg.what % 3;
 
                 initCombo();
 
-                switch(index){
+                switch (index) {
                     case 0:
-                        switch(sub_index){
+                        switch (sub_index) {
                             case 0:
                                 end(move1_1, msg.what);
                                 break;
@@ -863,7 +846,7 @@ public class RhythmActivity extends BaseActivity {
                         }
                         break;
                     case 1:
-                        switch(sub_index){
+                        switch (sub_index) {
                             case 0:
                                 end(move2_1, msg.what);
                                 break;
@@ -878,7 +861,7 @@ public class RhythmActivity extends BaseActivity {
                         }
                         break;
                     case 2:
-                        switch(sub_index){
+                        switch (sub_index) {
                             case 0:
                                 end(move3_1, msg.what);
                                 break;
@@ -897,30 +880,30 @@ public class RhythmActivity extends BaseActivity {
             }
         };
 
-        bad_handler = new Handler(){
+        bad_handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
-                if(!isOnView[msg.what]){
+                if (!isOnView[msg.what]) {
                     return;
                 }
                 isBad[msg.what] = true;
             }
         };
 
-        good_handler = new Handler(){
+        good_handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
-                if(!isOnView[msg.what]){
+                if (!isOnView[msg.what]) {
                     return;
                 }
                 isGood[msg.what] = true;
             }
         };
 
-        perfect_handler = new Handler(){
+        perfect_handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
-                if(!isOnView[msg.what]){
+                if (!isOnView[msg.what]) {
                     return;
                 }
                 isPerfect[msg.what] = true;
@@ -928,19 +911,19 @@ public class RhythmActivity extends BaseActivity {
         };
     }
 
-    private void startAfter(final int index, final int sub_index, long delay, final ImageView image){
-        new Timer().schedule(new TimerTask(){
+    private void startAfter(final int index, final int sub_index, long delay, final ImageView image) {
+        new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if(notPlaying){
+                        if (notPlaying) {
                             return;
                         }
                         start(image);
 
-                        int var = index*3 + sub_index;
+                        int var = index * 3 + sub_index;
                         isOnView[var] = true;
 
                         end_handler.sendEmptyMessageDelayed(var, 2100);
@@ -953,7 +936,7 @@ public class RhythmActivity extends BaseActivity {
         }, delay);
     }
 
-    private void start(final ImageView image){
+    private void start(final ImageView image) {
         image.setVisibility(View.VISIBLE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -963,44 +946,44 @@ public class RhythmActivity extends BaseActivity {
         }
     }
 
-    private void end(final ImageView image, int var){
+    private void end(final ImageView image, int var) {
         isOnView[var] = false;
         isPerfect[var] = false;
         isGood[var] = false;
         isBad[var] = false;
 
-        Log.d("MyTag", "in end -- var : "+var);
-        Log.d("MyTag", "in end -- isOnView:["+isOnView[0]+"]["+isOnView[1]+"]["+isOnView[2]+"]["+isOnView[3]+"]["+isOnView[4]+"]["+isOnView[5]+"]["+isOnView[6]+"]["+isOnView[7]+"]["+isOnView[8]+"]");
+        Log.d("MyTag", "in end -- var : " + var);
+        Log.d("MyTag", "in end -- isOnView:[" + isOnView[0] + "][" + isOnView[1] + "][" + isOnView[2] + "][" + isOnView[3] + "][" + isOnView[4] + "][" + isOnView[5] + "][" + isOnView[6] + "][" + isOnView[7] + "][" + isOnView[8] + "]");
 
         image.setVisibility(View.INVISIBLE);
     }
 
-    private void initCombo(){
-        if(maxCombo<combo){
-            maxCombo=combo;
+    private void initCombo() {
+        if (maxCombo < combo) {
+            maxCombo = combo;
         }
-        if(combo>30){
+        if (combo > 30) {
             sound_good_init.stop(track_good_init);
             sound_perfect.stop(track_perfect);
             sound_good.stop(track_good);
             sound_bad.play(track_bad, 1, 1, 1, 0, 1);
         }
-        combo=0;
-        tv_combo.setText(""+combo);
+        combo = 0;
+        tv_combo.setText("" + combo);
         tv_current.setText("");
     }
 
-    private void upCombo(){
+    private void upCombo() {
         combo++;
-        tv_combo.setText(""+combo);
+        tv_combo.setText("" + combo);
 
-        if(combo==30){
+        if (combo == 30) {
             sound_good_init.play(track_good_init, 1, 1, 3, 0, 1);
         }
-        if(combo==40){
+        if (combo == 40) {
             sound_good.play(track_good, 1, 1, 2, -1, 1);
         }
-        if(combo>=70 && combo%10==0){
+        if (combo >= 70 && combo % 10 == 0) {
             sound_perfect.play(track_perfect, 1, 1, 2, 0, 1);
         }
     }
@@ -1114,26 +1097,17 @@ public class RhythmActivity extends BaseActivity {
         goBack();
     }
 
-    public void goBack(){
-        for(int i=0; i<9; i++){
-            end_handler.removeMessages(i);
-            bad_handler.removeMessages(i);
-            good_handler.removeMessages(i);
-            perfect_handler.removeMessages(i);
+    public void goBack() {
+        for (int i = 0; i < 9; i++) {
+            end_handler.removeCallbacksAndMessages(i);
+            bad_handler.removeCallbacksAndMessages(i);
+            good_handler.removeCallbacksAndMessages(i);
+            perfect_handler.removeCallbacksAndMessages(i);
         }
-        end_handler.removeCallbacksAndMessages(null);
-        end_handler = null;
-        bad_handler.removeCallbacksAndMessages(null);
-        bad_handler = null;
-        good_handler.removeCallbacksAndMessages(null);
-        good_handler = null;
-        perfect_handler.removeCallbacksAndMessages(null);
-        perfect_handler = null;
-        if(goToNext!=null) {
+        if (goToNext != null) {
             goToNext.cancel();
             goToNext = null;
         }
-
         notPlaying = true;
 
         sound_good_init.stop(track_good_init);
@@ -1141,14 +1115,25 @@ public class RhythmActivity extends BaseActivity {
         sound_good.stop(track_good);
         sound_bad.stop(track_bad);
         /*
+        //TODO : Test
         Intent serviceIntent = new Intent(RhythmActivity.this, MpPlayer.class);
         stopService(serviceIntent);*/
-        //TODO : Test
+
         nmp.destroyMedia();
+
+        end_handler.removeCallbacksAndMessages(null);
+        bad_handler.removeCallbacksAndMessages(null);
+        good_handler.removeCallbacksAndMessages(null);
+        perfect_handler.removeCallbacksAndMessages(null);
+        end_handler = null;
+        bad_handler = null;
+        good_handler = null;
+        perfect_handler = null;
 
         Intent intent = new Intent(getContext(), GateActivity.class);
         startActivity(intent);
         finish();
+
     }
 
     @Override
@@ -1162,9 +1147,10 @@ public class RhythmActivity extends BaseActivity {
 
         notPlaying = true;
         /*
+        //TODO : Test
         Intent intent = new Intent(RhythmActivity.this, MpPlayer.class);
         stopService(intent);*/
-        //TODO : Test
+
         nmp.destroyMedia();
 
     }

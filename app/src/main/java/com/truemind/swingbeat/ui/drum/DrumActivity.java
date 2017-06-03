@@ -176,7 +176,6 @@ public class DrumActivity extends BaseActivity {
         rimShotTrack = rimShotPool.load(getContext(), R.raw.rimshot, 1);
 
         mediaPlayer = new MediaPlayer();
-        //mediaPlayer = MediaPlayer.create(getContext(), R.raw.bossa2);
     }
 
     public SoundPool build(int para1, int para2, int para3) {
