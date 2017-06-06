@@ -100,6 +100,7 @@ public class RhythmResult extends BaseActivity {
             }
         });
 
+
     }
 
     public void goBack(){
